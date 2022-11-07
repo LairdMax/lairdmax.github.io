@@ -30,15 +30,15 @@
 <script type="text/javascript">
 class FwhfPointLine{
 	constructor(pointNum,pointR,pointColor,pointSpeed,lineMaxLength,lineColor,eMaxLength,eSpeed){
-		this.pointNum = pointNum || 369;
+		this.pointNum = pointNum || 120;
 		this.pointR = pointR || [0.5,0.7];
 		this.pointColor = pointColor || ['rgb(255,0,0)','rgb(0,180,0)','rgb(0,0,200)'];
 		this.pointColorLength = this.pointColor.length;
 		this.pointSpeed = pointSpeed || [-3,3];
-		this.lineMaxLength = lineMaxLength || 200;
+		this.lineMaxLength = lineMaxLength || 150;
 		this.lineMaxLengthPow = Math.pow(this.lineMaxLength,2);
 		this.lineColor = lineColor || [222,116,159];
-		this.eMaxLength = eMaxLength || 260;
+		this.eMaxLength = eMaxLength || 200;
 		this.eCoefficient = this.lineMaxLength/eMaxLength;
 		this.eSpeed = eSpeed || 3;
 		this.width = window.innerWidth;
