@@ -17,12 +17,14 @@
     </p>
 </head>
 
+<body>
 
-
-  <canvas id="canvas" position:absolute;z-index:-2></canvas>
+  <canvas id="canvas" ></canvas>
     <script>
+    position:absolute;z-index:-2;
       //宇宙特效
       "use strict";
+
       var canvas = document.getElementById("canvas"),
         ctx = canvas.getContext("2d"),
         w = (canvas.width = window.innerWidth),
@@ -131,7 +133,7 @@
     </script>
 
 
-<body>
+
   
   <p style="text-align: center;">
     <img src="Img/Life.jpg" width="690" height="581" />
