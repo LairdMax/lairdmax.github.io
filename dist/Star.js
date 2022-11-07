@@ -1,4 +1,4 @@
-    <script>
+
       //宇宙特效
       "use strict";
       var canvas = document.getElementById("canvas"),
@@ -106,4 +106,4 @@
       }
 
       animation();
-    </script>
+
