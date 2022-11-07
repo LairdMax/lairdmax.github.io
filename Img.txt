@@ -9,16 +9,17 @@
     <p style="text-align: center;">
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-       <title>  欢迎来到LairdMax  </title>
+       <title>  LairdMax  </title>
     </p>
 </head>
 
 <body>
 
-<h1>hello everyone</h1>
     <p style="text-align: center;">
-        <img src="\Life.jpg" width="690" height="581" />
-        <img src="\二维码.png" width="600" height="600" />
+      <h1>Hello！</h1>
+        <img src="/Img/Life.jpg" width="690" height="581" />
+        <img src="/Img/mental.jpg" width="1178" height="858" />
+        <img src="/Img/二维码.png" width="600" height="600" />
     </p>
 </body>
 
