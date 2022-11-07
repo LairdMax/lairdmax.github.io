@@ -19,13 +19,10 @@
 
 <body>
 
-  <canvas id="canvas" ></canvas>
+  <canvas id="canvas" style="left: 500px; border:dashed 2px #ccc;position:absolute;z-index:-2;filter: alpha(opacity:50);opacity: 0.5"></canvas>
     <script>
       //宇宙特效
       "use strict";
-    
-    z-index:-1;
-    position:absolute;
 
       var canvas = document.getElementById("canvas"),
         ctx = canvas.getContext("2d"),
