@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+</body>
+
 <script type="text/javascript">
 class FwhfPointLine{
 	constructor(pointNum,pointR,pointColor,pointSpeed,lineMaxLength,lineColor,eMaxLength,eSpeed){
@@ -183,3 +191,6 @@ class FwhfPointLine{
 } 
 new FwhfPointLine(); 
 </script>
+
+</html>
+
