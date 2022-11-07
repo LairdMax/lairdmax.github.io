@@ -24,52 +24,7 @@
   </p>
 
 </body>
-风舞红枫
-关注
-canvas实战之酷炫背景动画（一） 原创
-2021-03-04 14:57:05
- 2点赞
 
-风舞红枫 
-
-码龄4年
-
-关注
-系列文章
-canvas实战之酷炫背景动画（一）
-canvas实战之酷炫背景动画（二）
-canvas实战之酷炫背景动画（三）
-canvas实战之酷炫背景动画（四）
-canvas实战之酷炫背景动画（五）
-canvas实战之酷炫背景动画（六）
-canvas实战之酷炫背景动画（七）
-
-相信大家都看到了博客中的背景动画,推荐你们一款插件canvas-nest.js
-npm install canvas-nest.js下载后将文件夹中的node_modules\canvas-nest.js\dist中的canvas-nest.js取出引入到html页面中,切记建议放在body标签中的最下方
-
-示例
-
-<script type="text/javascript" color="0,0,255" opacity='0.7' zIndex="2" count="99" src="canvas-nest.js"></script>
-1
-1
-color: 线条颜色, 默认: ‘0,0,0’ ；三个数字分别为(R,G,B)，注意用,分割
-pointColor: 交点颜色, 默认: ‘0,0,0’ ；三个数字分别为(R,G,B)，注意用,分割
-opacity: 线条透明度（0~1）, 默认: 0.5
-count: 线条的总数量, 默认: 150
-zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1
-
-既然学习了canvas自然要尝试自行封装，下方是我的初步封装，后期再进行优化添加功能等，下节先进行代码解读
-效果图如下：
-请添加图片描述
-源代码如下：
-
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-</body>
 <script type="text/javascript">
 class fwhfPointLine{
 	constructor(pointNum,minR,maxR,pointColor,pointSpeed,lineColor,lineShowWidth){
