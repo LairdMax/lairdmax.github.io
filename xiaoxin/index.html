@@ -18,9 +18,17 @@
 	<link rel="stylesheet" type="text/css" href="css/yidong.css" />
 	<!-- 本项目开源地址：https://github.com/appexplore/jianavi 请勿完全抄袭源码，请勿声明自己是原创 -->
 </head>
-
+	
+<style> 
+ body {
+   background:url("/xiaoxin/img/01.jpg")  no-repeat center center;   /*加载背景图*/   /* 背景图不平铺 */
+   background-size:cover;  /* 让背景图基于容器大小伸缩 */
+   background-attachment:fixed;        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */    //此条属性必须设置否则可能无效/
+   background-color:#CCCCCC;   /* 设置背景颜色，背景图加载过程中会显示背景色 */
+ }
+</style>
 <body>
-	background-image: url("img/01.jpg");
+	
 		<!-- 搜索栏start 
 		<div class="baidu baidu-2">
 			<form name="f" action="https://www.baidu.com/s" target="_blank">
