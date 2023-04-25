@@ -1,0 +1,28 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>我的全新 Hugo 网站</title>
+        <link>http://example.org/</link>
+        <description>欢迎来到Levin的小屋</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Tue, 25 Apr 2023 17:53:19 &#43;0800</lastBuildDate>
+            <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>图片测试</title>
+    <link>http://example.org/posts/sec_page/</link>
+    <pubDate>Tue, 25 Apr 2023 17:53:19 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://example.org/posts/sec_page/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/2023/0425/kali.jpg" referrerpolicy="no-referrer">
+            </div>测试文章主页图片]]></description>
+</item>
+<item>
+    <title>我的第一篇文章</title>
+    <link>http://example.org/posts/fisrt_page/</link>
+    <pubDate>Tue, 25 Apr 2023 16:08:12 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://example.org/posts/fisrt_page/</guid>
+    <description><![CDATA[测试hugo搭建博客]]></description>
+</item>
+</channel>
+</rss>
