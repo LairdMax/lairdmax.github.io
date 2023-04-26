@@ -1,23 +1,23 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - Tag - Levin的小屋</title>
-        <link>http://example.org/tags/</link>
+        <link>http://lairdmax.github.io/tags/</link>
         <description>Tags - Tag - Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/tags/" rel="self" type="application/rss+xml" /><item>
     <title>网站搭建</title>
-    <link>http://example.org/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</link>
+    <link>http://lairdmax.github.io/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</link>
     <pubDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</guid>
+    <guid>http://lairdmax.github.io/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>测试</title>
-    <link>http://example.org/tags/%E6%B5%8B%E8%AF%95/</link>
+    <link>http://lairdmax.github.io/tags/%E6%B5%8B%E8%AF%95/</link>
     <pubDate>Wed, 26 Apr 2023 16:19:23 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/tags/%E6%B5%8B%E8%AF%95/</guid>
+    <guid>http://lairdmax.github.io/tags/%E6%B5%8B%E8%AF%95/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
