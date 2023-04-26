@@ -1,10 +1,18 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>网站搭建 - Tag - 我的全新 Hugo 网站</title>
+        <title>网站搭建 - Tag - Levin的小屋</title>
         <link>http://example.org/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/</link>
-        <description>网站搭建 - Tag - 我的全新 Hugo 网站</description>
+        <description>网站搭建 - Tag - Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Tue, 25 Apr 2023 16:08:12 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/tags/%E7%BD%91%E7%AB%99%E6%90%AD%E5%BB%BA/" rel="self" type="application/rss+xml" /><item>
+    <title>5测试模板功能</title>
+    <link>http://example.org/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</link>
+    <pubDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://example.org/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</guid>
+    <description><![CDATA[1.模板测试]]></description>
+</item>
+<item>
     <title>我的第一篇文章</title>
     <link>http://example.org/posts/fisrt_page/</link>
     <pubDate>Tue, 25 Apr 2023 16:08:12 &#43;0800</pubDate>
