@@ -12,7 +12,7 @@
     <pubDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</pubDate>
     <author>Levin</author>
     <guid>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</guid>
-    <description><![CDATA[快速通道 1.安装： apt-get isntall aircrack-ng 2.查看网卡名字：ifconfig 3.设置网卡为监听模式：airmon-ng start wlan0 4.扫描附近的WIFI：airodu]]></description>
+    <description><![CDATA[快速通道 1.安装： apt-get install aircrack-ng 2.查看网卡名字：ifconfig 3.设置网卡为监听模式：airmon-ng start wlan0 4.扫描附近的WIFI：airodu]]></description>
 </item>
 <item>
     <title>5测试模板功能</title>
