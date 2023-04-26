@@ -1,49 +1,49 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>测试 - Category - Levin的小屋</title>
-        <link>http://example.org/categories/%E6%B5%8B%E8%AF%95/</link>
+        <link>http://lairdmax.github.io/categories/%E6%B5%8B%E8%AF%95/</link>
         <description>测试 - Category - Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</lastBuildDate><atom:link href="http://example.org/categories/%E6%B5%8B%E8%AF%95/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/categories/%E6%B5%8B%E8%AF%95/" rel="self" type="application/rss+xml" /><item>
     <title>5测试模板功能</title>
-    <link>http://example.org/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</link>
+    <link>http://lairdmax.github.io/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</link>
     <pubDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</guid>
+    <guid>http://lairdmax.github.io/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</guid>
     <description><![CDATA[1.模板测试]]></description>
 </item>
 <item>
     <title>4测试评论功能</title>
-    <link>http://example.org/posts/4ceshipinglun/</link>
+    <link>http://lairdmax.github.io/posts/4ceshipinglun/</link>
     <pubDate>Wed, 26 Apr 2023 16:19:23 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/posts/4ceshipinglun/</guid>
+    <guid>http://lairdmax.github.io/posts/4ceshipinglun/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>3代码段测试</title>
-    <link>http://example.org/posts/3ceshidaima/</link>
+    <link>http://lairdmax.github.io/posts/3ceshidaima/</link>
     <pubDate>Wed, 26 Apr 2023 10:45:04 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/posts/3ceshidaima/</guid>
+    <guid>http://lairdmax.github.io/posts/3ceshidaima/</guid>
     <description><![CDATA[1 图片 Kali Linux 2 横幅+打印代码 3 打印代码 {{&lt; typeit code=java &gt;}} public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); } } {{&lt; /typeit &gt;}} 显示结果： 4 横幅 代码片段 public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); } } 或者 This is a]]></description>
 </item>
 <item>
     <title>图片测试</title>
-    <link>http://example.org/posts/sec_page/</link>
+    <link>http://lairdmax.github.io/posts/sec_page/</link>
     <pubDate>Tue, 25 Apr 2023 17:53:19 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/posts/sec_page/</guid>
+    <guid>http://lairdmax.github.io/posts/sec_page/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/2023/0425/kali.jpg" referrerpolicy="no-referrer">
             </div>测试文章主页图片]]></description>
 </item>
 <item>
     <title>我的第一篇文章</title>
-    <link>http://example.org/posts/fisrt_page/</link>
+    <link>http://lairdmax.github.io/posts/fisrt_page/</link>
     <pubDate>Tue, 25 Apr 2023 16:08:12 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://example.org/posts/fisrt_page/</guid>
+    <guid>http://lairdmax.github.io/posts/fisrt_page/</guid>
     <description><![CDATA[测试hugo搭建博客]]></description>
 </item>
 </channel>
