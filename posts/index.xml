@@ -4,7 +4,23 @@
         <link>http://lairdmax.github.io/posts/</link>
         <description>All Posts | Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Thu, 27 Apr 2023 11:01:02 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>github更新</title>
+    <link>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8github%E6%9B%B4%E6%96%B0/</link>
+    <pubDate>Thu, 27 Apr 2023 11:01:02 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8github%E6%9B%B4%E6%96%B0/</guid>
+    <description><![CDATA[1.测试github功能 提交你的修改至本地库。 查看当前修改状态。 git status 添加所有修改过的文件。你也可以只添加某个文件。 git add . &ldquo;Add a new post&rdquo; 是 commit message. git commit -m]]></description>
+</item>
+<item>
+    <title>测试github功能</title>
+    <link>http://lairdmax.github.io/posts/%E6%B5%8B%E8%AF%95github%E5%8A%9F%E8%83%BD/</link>
+    <pubDate>Thu, 27 Apr 2023 11:01:02 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/%E6%B5%8B%E8%AF%95github%E5%8A%9F%E8%83%BD/</guid>
+    <description><![CDATA[1.测试github功能]]></description>
+</item>
+<item>
     <title>使用Aircrack-ng破解WiFi密码</title>
     <link>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</link>
     <pubDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</pubDate>
