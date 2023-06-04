@@ -4,79 +4,45 @@
         <link>http://lairdmax.github.io/posts/</link>
         <description>All Posts | Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Thu, 27 Apr 2023 14:41:02 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>2测试github更新</title>
-    <link>http://lairdmax.github.io/posts/%E6%B5%8B%E8%AF%95github%E5%8A%9F%E8%83%BD%E7%AC%AC%E4%BA%8C%E6%AC%A1/</link>
-    <pubDate>Thu, 27 Apr 2023 14:41:02 &#43;0800</pubDate>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Sun, 04 Jun 2023 22:50:01 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>制作kali移动U盘使用EFI启动</title>
+    <link>http://lairdmax.github.io/posts/202306042250/</link>
+    <pubDate>Sun, 04 Jun 2023 22:50:01 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/%E6%B5%8B%E8%AF%95github%E5%8A%9F%E8%83%BD%E7%AC%AC%E4%BA%8C%E6%AC%A1/</guid>
-    <description><![CDATA[1.测试github功能]]></description>
+    <guid>http://lairdmax.github.io/posts/202306042250/</guid>
+    <description><![CDATA[制作kali移动U盘系统启动问题 1.使用guid分区★★★★★（能否使用EFI启动的关键） 建立EFI分区 2.识别不到启动项 拷贝 boot/kali/grubx64.efi boot/grubx64.efi 到EFI分]]></description>
 </item>
 <item>
-    <title>github更新</title>
-    <link>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8github%E6%9B%B4%E6%96%B0/</link>
-    <pubDate>Thu, 27 Apr 2023 11:01:02 &#43;0800</pubDate>
+    <title>kali安装中文输入法</title>
+    <link>http://lairdmax.github.io/posts/202306042245/</link>
+    <pubDate>Sun, 04 Jun 2023 22:45:01 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8github%E6%9B%B4%E6%96%B0/</guid>
-    <description><![CDATA[1.测试github功能 提交你的修改至本地库。 查看当前修改状态。 git status 添加所有修改过的文件。你也可以只添加某个文件。 git add . &ldquo;Add a new post&rdquo; 是 commit message. git commit -m]]></description>
+    <guid>http://lairdmax.github.io/posts/202306042245/</guid>
+    <description><![CDATA[#kali中文输入法 安装输入法框架 apt-get install fcitx 安装谷歌输入法 apt-get install fcitx-googlepinyin 重启 reboot]]></description>
 </item>
 <item>
-    <title>测试github功能</title>
-    <link>http://lairdmax.github.io/posts/%E6%B5%8B%E8%AF%95github%E5%8A%9F%E8%83%BD/</link>
-    <pubDate>Thu, 27 Apr 2023 11:01:02 &#43;0800</pubDate>
+    <title>kali换更新源</title>
+    <link>http://lairdmax.github.io/posts/202306042240/</link>
+    <pubDate>Sun, 04 Jun 2023 22:40:01 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/%E6%B5%8B%E8%AF%95github%E5%8A%9F%E8%83%BD/</guid>
-    <description><![CDATA[1.测试github功能]]></description>
+    <guid>http://lairdmax.github.io/posts/202306042240/</guid>
+    <description><![CDATA[kali安装与优化 kali优化 使用vim编辑 sources.list vim /etc/apt/sources.list 国内的源 #清华大学 deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free deb-src https://mirrors.tuna.tsinghua.edu.cn #中科大kali源 deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib deb-src http://mirrors.ustc.edu.cn/kali kali main non-free contrib deb http://mirrors.ustc.edu.cn/kali-security kali/updates main contrib non-free #]]></description>
+</item>
+<item>
+    <title>更新github网站</title>
+    <link>http://lairdmax.github.io/posts/202306042230/</link>
+    <pubDate>Sun, 04 Jun 2023 22:30:02 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/202306042230/</guid>
+    <description><![CDATA[提交你的修改至本地库。 查看当前修改状态。 git status 添加所有修改过的文件。你也可以只添加某个文件。 git add . &ldquo;Add a new post&rdquo; 是 commit message. git commit -m &#34;更新&#34;]]></description>
 </item>
 <item>
     <title>使用Aircrack-ng破解WiFi密码</title>
-    <link>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</link>
-    <pubDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</pubDate>
+    <link>http://lairdmax.github.io/posts/202306042235/</link>
+    <pubDate>Wed, 26 Apr 2023 22:38:56 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</guid>
-    <description><![CDATA[快速通道 1.安装： apt-get install aircrack-ng 2.查看网卡名字：ifconfig 3.设置网卡为监听模式：airmon-ng start wlan0 4.扫描附近的WIFI：airodu]]></description>
-</item>
-<item>
-    <title>5测试模板功能</title>
-    <link>http://lairdmax.github.io/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</link>
-    <pubDate>Wed, 26 Apr 2023 17:10:01 &#43;0800</pubDate>
-    <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/5%E6%B5%8B%E8%AF%95%E6%A8%A1%E6%9D%BF%E5%8A%9F%E8%83%BD/</guid>
-    <description><![CDATA[1.模板测试]]></description>
-</item>
-<item>
-    <title>4测试评论功能</title>
-    <link>http://lairdmax.github.io/posts/4ceshipinglun/</link>
-    <pubDate>Wed, 26 Apr 2023 16:19:23 &#43;0800</pubDate>
-    <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/4ceshipinglun/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>3代码段测试</title>
-    <link>http://lairdmax.github.io/posts/3ceshidaima/</link>
-    <pubDate>Wed, 26 Apr 2023 10:45:04 &#43;0800</pubDate>
-    <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/3ceshidaima/</guid>
-    <description><![CDATA[1 图片 Kali Linux 2 横幅+打印代码 3 打印代码 {{&lt; typeit code=java &gt;}} public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); } } {{&lt; /typeit &gt;}} 显示结果： 4 横幅 代码片段 public class HelloWorld { public static void main(String []args) { System.out.println(&#34;Hello World&#34;); } } 或者 This is a]]></description>
-</item>
-<item>
-    <title>图片测试</title>
-    <link>http://lairdmax.github.io/posts/sec_page/</link>
-    <pubDate>Tue, 25 Apr 2023 17:53:19 &#43;0800</pubDate>
-    <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/sec_page/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/images/2023/0425/kali.jpg" referrerpolicy="no-referrer">
-            </div>测试文章主页图片]]></description>
-</item>
-<item>
-    <title>我的第一篇文章</title>
-    <link>http://lairdmax.github.io/posts/fisrt_page/</link>
-    <pubDate>Tue, 25 Apr 2023 16:08:12 &#43;0800</pubDate>
-    <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/fisrt_page/</guid>
-    <description><![CDATA[测试hugo搭建博客]]></description>
+    <guid>http://lairdmax.github.io/posts/202306042235/</guid>
+    <description><![CDATA[1.安装 apt-get install aircrack-ng 2.Aircrack-ng 破解WiFi 摘要 1.查看网卡名字：ifconfig 2.设置网卡为监听模式：airmon-ng start wlan0 3.扫描附近的WIFI：ai]]></description>
 </item>
 </channel>
 </rss>

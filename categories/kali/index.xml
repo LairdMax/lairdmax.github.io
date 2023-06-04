@@ -4,13 +4,37 @@
         <link>http://lairdmax.github.io/categories/kali/</link>
         <description>kali - Category - Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/categories/kali/" rel="self" type="application/rss+xml" /><item>
-    <title>使用Aircrack-ng破解WiFi密码</title>
-    <link>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</link>
-    <pubDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</pubDate>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Sun, 04 Jun 2023 22:50:01 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/categories/kali/" rel="self" type="application/rss+xml" /><item>
+    <title>制作kali移动U盘使用EFI启动</title>
+    <link>http://lairdmax.github.io/posts/202306042250/</link>
+    <pubDate>Sun, 04 Jun 2023 22:50:01 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</guid>
-    <description><![CDATA[快速通道 1.安装： apt-get install aircrack-ng 2.查看网卡名字：ifconfig 3.设置网卡为监听模式：airmon-ng start wlan0 4.扫描附近的WIFI：airodu]]></description>
+    <guid>http://lairdmax.github.io/posts/202306042250/</guid>
+    <description><![CDATA[制作kali移动U盘系统启动问题 1.使用guid分区★★★★★（能否使用EFI启动的关键） 建立EFI分区 2.识别不到启动项 拷贝 boot/kali/grubx64.efi boot/grubx64.efi 到EFI分]]></description>
+</item>
+<item>
+    <title>kali安装中文输入法</title>
+    <link>http://lairdmax.github.io/posts/202306042245/</link>
+    <pubDate>Sun, 04 Jun 2023 22:45:01 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/202306042245/</guid>
+    <description><![CDATA[#kali中文输入法 安装输入法框架 apt-get install fcitx 安装谷歌输入法 apt-get install fcitx-googlepinyin 重启 reboot]]></description>
+</item>
+<item>
+    <title>kali换更新源</title>
+    <link>http://lairdmax.github.io/posts/202306042240/</link>
+    <pubDate>Sun, 04 Jun 2023 22:40:01 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/202306042240/</guid>
+    <description><![CDATA[kali安装与优化 kali优化 使用vim编辑 sources.list vim /etc/apt/sources.list 国内的源 #清华大学 deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling main contrib non-free deb-src https://mirrors.tuna.tsinghua.edu.cn #中科大kali源 deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib deb-src http://mirrors.ustc.edu.cn/kali kali main non-free contrib deb http://mirrors.ustc.edu.cn/kali-security kali/updates main contrib non-free #]]></description>
+</item>
+<item>
+    <title>使用Aircrack-ng破解WiFi密码</title>
+    <link>http://lairdmax.github.io/posts/202306042235/</link>
+    <pubDate>Wed, 26 Apr 2023 22:38:56 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/202306042235/</guid>
+    <description><![CDATA[1.安装 apt-get install aircrack-ng 2.Aircrack-ng 破解WiFi 摘要 1.查看网卡名字：ifconfig 2.设置网卡为监听模式：airmon-ng start wlan0 3.扫描附近的WIFI：ai]]></description>
 </item>
 </channel>
 </rss>

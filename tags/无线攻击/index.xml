@@ -4,13 +4,13 @@
         <link>http://lairdmax.github.io/tags/%E6%97%A0%E7%BA%BF%E6%94%BB%E5%87%BB/</link>
         <description>无线攻击 - Tag - Levin的小屋</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
-            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/tags/%E6%97%A0%E7%BA%BF%E6%94%BB%E5%87%BB/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Wed, 26 Apr 2023 22:38:56 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/tags/%E6%97%A0%E7%BA%BF%E6%94%BB%E5%87%BB/" rel="self" type="application/rss+xml" /><item>
     <title>使用Aircrack-ng破解WiFi密码</title>
-    <link>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</link>
-    <pubDate>Wed, 26 Apr 2023 22:45:56 &#43;0800</pubDate>
+    <link>http://lairdmax.github.io/posts/202306042235/</link>
+    <pubDate>Wed, 26 Apr 2023 22:38:56 &#43;0800</pubDate>
     <author>Levin</author>
-    <guid>http://lairdmax.github.io/posts/%E4%BD%BF%E7%94%A8aircrack-ng%E7%A0%B4%E8%A7%A3wifi%E5%AF%86%E7%A0%81/</guid>
-    <description><![CDATA[快速通道 1.安装： apt-get install aircrack-ng 2.查看网卡名字：ifconfig 3.设置网卡为监听模式：airmon-ng start wlan0 4.扫描附近的WIFI：airodu]]></description>
+    <guid>http://lairdmax.github.io/posts/202306042235/</guid>
+    <description><![CDATA[1.安装 apt-get install aircrack-ng 2.Aircrack-ng 破解WiFi 摘要 1.查看网卡名字：ifconfig 2.设置网卡为监听模式：airmon-ng start wlan0 3.扫描附近的WIFI：ai]]></description>
 </item>
 </channel>
 </rss>

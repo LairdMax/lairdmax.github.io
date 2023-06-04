@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>输入法 - Tag - Levin的小屋</title>
+        <link>http://lairdmax.github.io/tags/%E8%BE%93%E5%85%A5%E6%B3%95/</link>
+        <description>输入法 - Tag - Levin的小屋</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lairdmax@163.com (Levin)</managingEditor>
+            <webMaster>lairdmax@163.com (Levin)</webMaster><lastBuildDate>Sun, 04 Jun 2023 22:45:01 &#43;0800</lastBuildDate><atom:link href="http://lairdmax.github.io/tags/%E8%BE%93%E5%85%A5%E6%B3%95/" rel="self" type="application/rss+xml" /><item>
+    <title>kali安装中文输入法</title>
+    <link>http://lairdmax.github.io/posts/202306042245/</link>
+    <pubDate>Sun, 04 Jun 2023 22:45:01 &#43;0800</pubDate>
+    <author>Levin</author>
+    <guid>http://lairdmax.github.io/posts/202306042245/</guid>
+    <description><![CDATA[#kali中文输入法 安装输入法框架 apt-get install fcitx 安装谷歌输入法 apt-get install fcitx-googlepinyin 重启 reboot]]></description>
+</item>
+</channel>
+</rss>
