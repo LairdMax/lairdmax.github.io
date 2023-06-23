@@ -10,6 +10,8 @@
 
     <img src="DSCN0614_small.jpg" id="img1" />
     <pre>Make and model: <span id="makeAndModel"></span></div>
+    <pre>Fnumber: <span id="Fnumber"></span></div>
+    <pre>time : <span id="time" </span></div>
 <script type="text/javascript" src="../exif.js"></script>
     <script>
         "use strict";
@@ -25,6 +27,11 @@
                 var model = EXIF.getTag(this, "Model");
                 var makeAndModel = document.getElementById("makeAndModel");
                 makeAndModel.innerHTML = `${make} ${model}`;
+                var Fnumber = EXIF.getTag(this,"FNumber");
+                var time = EXIF.getTag(this,"SubsecTime");
+                time.innerHTML = ${time};
+                Fnumber.innerHTML = ${Fnumber};
+
             });
         }
     </script>
