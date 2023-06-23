@@ -26,7 +26,7 @@
                 var makeAndModel = document.getElementById("makeAndModel");
                 makeAndModel.innerHTML = `${make} ${model}`;
                 var Fnumber1 = EXIF.getTag(this,"FNumber");
-                var time1 = EXIF.getTag(this,"SubsecTime");
+                var time1 = EXIF.getTag(this,"DateTimeOriginal");
                 var testtime = document.getElementById("testtime");
                 testtime.innerHTML = `${time1}`;
                 testFnumber.innerHTML = `${Fnumber1}`;
