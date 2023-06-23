@@ -18,10 +18,6 @@
         "use strict";
         window.onload=getExif;
         
-       # <input type="text" size="10" maxlength="30" value="getExif">
-
-       # <input type="text" size="10" maxlength="30" value="测试文本框">
-
         function getExif() {
             var img1 = document.getElementById("img1");
             EXIF.getData(img1, function() {
