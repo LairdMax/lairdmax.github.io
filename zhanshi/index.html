@@ -18,15 +18,15 @@
         .gallery {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: flex-start;
             gap: 20px;
             margin-top: 30px;
         }
 
         .image-container {
-            width: 100%;
-            max-width: 400px;
+            flex: 0 0 calc(100% - 20px);
+            max-width: calc(100% - 20px);
             text-align: center;
         }
 
@@ -68,12 +68,12 @@
 
                 if (this.exifdata) {
                     var exifHtml = '';
-                    exifHtml += '<p>拍摄时间: ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
-                    exifHtml += '<p>经度: ' + (this.exifdata.GPSLongitude || '未知') + '</p>';
-                    exifHtml += '<p>纬度: ' + (this.exifdata.GPSLatitude || '未知') + '</p>';
-                    exifHtml += '<p>光圈值: ' + (this.exifdata.FNumber || '未知') + '</p>';
-                    exifHtml += '<p>焦距: ' + (this.exifdata.FocalLength || '未知') + '</p>';
-                    exifHtml += '<p>镜头型号: ' + (this.exifdata.LensModel || '未知') + '</p>';
+                    exifHtml += '<p><strong>拍摄时间:</strong> ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
+                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLatitude || '未知') + '</p>';
+                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLongitude || '未知') + '</p>';
+                    exifHtml += '<p><strong>光圈值:</strong> ' + (this.exifdata.FNumber || '未知') + '</p>';
+                    exifHtml += '<p><strong>焦距:</strong> ' + (this.exifdata.FocalLength || '未知') + '</p>';
+                    exifHtml += '<p><strong>镜头型号:</strong> ' + (this.exifdata.LensModel || '未知') + '</p>';
 
                     exifInfo.innerHTML = exifHtml;
                 } else {
