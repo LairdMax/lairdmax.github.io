@@ -120,7 +120,6 @@
                 }).catch(function() {
                     console.log('Image not found: ' + imageIndex);
                 });
-
                 loadPromises.push(loadPromise);
             }
 
@@ -143,6 +142,13 @@
                 var model = EXIF.getTag(this, 'Model');
                 var latitude = EXIF.getTag(this, 'GPSLatitude');
                 var longitude = EXIF.getTag(this, 'GPSLongitude');
+                var dateTime = EXIF.getTag(this, 'DateTimeOriginal');
+
+                if (dateTime) {
+                    var dateTimeParagraph = document.createElement('p');
+                    dateTimeParagraph.innerHTML = '<span class="label">拍摄时间:</span> ' + formatDateTime(dateTime);
+                    exifInfo.appendChild(dateTimeParagraph);
+                }
 
                 if (aperture) {
                     var apertureParagraph = document.createElement('p');
@@ -170,12 +176,28 @@
 
                 if (latitude && longitude) {
                     var coordinatesParagraph = document.createElement('p');
-                    coordinatesParagraph.innerHTML = '<span class="label">经纬度:</span> <span class="coordinates">' + latitude + ', ' + longitude + '</span>';
+                    coordinatesParagraph.innerHTML = '<span class="label">经纬度:</span> ' + formatCoordinates(latitude, longitude);
                     exifInfo.appendChild(coordinatesParagraph);
                 }
 
                 element.appendChild(exifInfo);
             });
+        }
+
+        function formatDateTime(dateTime) {
+            var date = new Date(dateTime);
+            return date.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric'
+            });
+        }
+
+        function formatCoordinates(latitude, longitude) {
+            return latitude + ', ' + longitude;
         }
 
         function sortImagesByExifDateTime() {
