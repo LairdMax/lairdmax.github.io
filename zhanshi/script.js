@@ -43,7 +43,7 @@ function loadImages() {
             return bTime - aTime;
           });
 
-          // 显示排序后的照片
+          // 显示排序后的照片和EXIF信息
           images.forEach((image) => {
             var container = document.createElement('div');
             container.classList.add('image-container');
@@ -51,7 +51,11 @@ function loadImages() {
             var imgElement = document.createElement('img');
             imgElement.src = image.src;
 
+            var exifInfo = document.createElement('p');
+            exifInfo.textContent = getExifDataString(image.element);
+
             container.appendChild(imgElement);
+            container.appendChild(exifInfo);
             imageContainer.appendChild(container);
           });
         })
@@ -70,4 +74,11 @@ function getExifDateTime(image) {
   return dateTime ? Date.parse(dateTime) : 0;
 }
 
+function getExifDataString(image) {
+  var exifData = EXIF.pretty(image);
+  return exifData;
+}
+
 window.onload = loadImages;
+
+
