@@ -97,8 +97,16 @@
                 img.onerror = function() {
                     reject();
                 };
-                img.src = imageFolder + 'image' + imageIndex + '.jpg';
+                img.src = imageFolder + 'IMG_' + padNumber(imageIndex) + '.jpg';
             });
+        }
+
+        function padNumber(number) {
+            var paddedNumber = String(number);
+            while (paddedNumber.length < 8) {
+                paddedNumber = '0' + paddedNumber;
+            }
+            return paddedNumber;
         }
 
         function loadImages(start, count) {
@@ -116,15 +124,16 @@
                     // 创建图片元素
                     var image = document.createElement('img');
                     image.src = img.src;
-
-                    // 添加图片到容器
                     imageContainer.appendChild(image);
 
-                    // 获取EXIF信息并添加到容器
+                    // 获取图片的Exif信息
                     getExifInformation(img, imageContainer);
 
-                    // 添加图片容器到画廊
+                    // 将图片容器添加到画廊中
                     gallery.appendChild(imageContainer);
+                }).catch(function() {
+                    // 图片加载失败
+                    console.log('Failed to load image: IMG_' + padNumber(imageIndex) + '.jpg');
                 });
 
                 loadPromises.push(loadPromise);
@@ -201,11 +210,11 @@
             });
         }
 
-        window.addEventListener('load', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             loadImages(startIndex, imagesPerLoad);
 
             window.addEventListener('scroll', function() {
-                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                 var windowHeight = window.innerHeight || document.documentElement.clientHeight;
                 var documentHeight = document.documentElement.scrollHeight;
 
