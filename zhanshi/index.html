@@ -69,8 +69,8 @@
                 if (this.exifdata) {
                     var exifHtml = '';
                     exifHtml += '<p><strong>拍摄时间:</strong> ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
-                    exifHtml += '<p><strong>经度:</strong> ' + (formatCoordinate(this.exifdata.GPSLongitude) || '未知') + '</p>';
-                    exifHtml += '<p><strong>纬度:</strong> ' + (formatCoordinate(this.exifdata.GPSLatitude) || '未知') + '</p>';
+                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLatitude || '未知') + '</p>';
+                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLongitude || '未知') + '</p>';
                     exifHtml += '<p><strong>光圈值:</strong> ' + (this.exifdata.FNumber || '未知') + '</p>';
                     exifHtml += '<p><strong>焦距:</strong> ' + (this.exifdata.FocalLength || '未知') + '</p>';
                     exifHtml += '<p><strong>镜头型号:</strong> ' + (this.exifdata.LensModel || '未知') + '</p>';
@@ -84,37 +84,19 @@
             });
         }
 
-        function formatCoordinate(coordinate) {
-            if (coordinate && coordinate.length === 3) {
-                var degrees = coordinate[0] || 0;
-                var minutes = coordinate[1] || 0;
-                var seconds = coordinate[2] || 0;
-
-                var direction = coordinate[3] || '';
-                var formattedCoordinate = degrees + '° ' + minutes + '\' ' + seconds + '" ' + direction;
-
-                return formattedCoordinate;
-            }
-
-            return '';
-        }
-
-        function loadImages(startIndex, endIndex) {
+        function loadImages(startIndex, count) {
             var gallery = document.querySelector('.gallery');
 
-            for (var i = startIndex; i < endIndex; i++) {
+            for (var i = startIndex; i < startIndex + count; i++) {
                 var imageSrc = imagesFolder + 'image' + i + '.jpg';
                 var imageContainer = document.createElement('div');
                 imageContainer.classList.add('image-container');
 
                 var image = new Image();
                 image.src = imageSrc;
-
-                image.onload = function() {
-                    loadImageExif(this, imageContainer);
-                };
-
                 imageContainer.appendChild(image);
+
+                loadImageExif(image, imageContainer);
 
                 gallery.appendChild(imageContainer);
                 loadedImages.push(imageContainer);
