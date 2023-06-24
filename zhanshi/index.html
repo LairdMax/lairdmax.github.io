@@ -54,21 +54,10 @@
 
         .exif-info p {
             margin: 5px 0;
-            display: flex;
-            align-items: center;
         }
 
         .exif-info p .label {
             font-weight: bold;
-            width: 100px;
-        }
-
-        .exif-info p .value {
-            margin-left: 10px;
-        }
-
-        .exif-info p .coordinates {
-            font-family: monospace;
         }
     </style>
 </head>
@@ -97,14 +86,6 @@
             });
         }
 
-        function padNumber(number) {
-            var paddedNumber = String(number);
-            while (paddedNumber.length < 8) {
-                paddedNumber = '0' + paddedNumber;
-            }
-            return paddedNumber;
-        }
-
         function loadImages(start, count) {
             var gallery = document.querySelector('.gallery');
 
@@ -113,36 +94,29 @@
                 var imageIndex = i;
 
                 var loadPromise = loadImage(imageIndex).then(function(img) {
-                    // 创建图片容器
                     var imageContainer = document.createElement('div');
                     imageContainer.className = 'image-container';
 
-                    // 创建图片元素
                     var image = document.createElement('img');
                     image.src = img.src;
                     imageContainer.appendChild(image);
 
-                    // 获取图片的Exif信息
                     getExifInformation(img, imageContainer);
 
-                    // 将图片容器添加到画廊中
                     gallery.appendChild(imageContainer);
                 }).catch(function() {
-                    // 图片加载失败
-                    console.log('Failed to load image: IMG_' + padNumber(imageIndex) + '.jpg');
+                    console.log('Failed to load image: image' + imageIndex + '.jpg');
                 });
 
                 loadPromises.push(loadPromise);
             }
 
             Promise.all(loadPromises).then(function() {
-                // 所有图片加载完成
                 sortImagesByExifDateTime();
             });
         }
 
         function getExifInformation(image, element) {
-            // 使用exif.js获取图片的Exif信息
             EXIF.getData(image, function() {
                 var exifInfo = document.createElement('div');
                 exifInfo.className = 'exif-info';
@@ -151,23 +125,20 @@
                 if (exifData) {
                     var exifHtml = '';
 
-                    // 拍摄时间
                     if (exifData.DateTimeOriginal) {
                         var dateTaken = parseExifDateTime(exifData.DateTimeOriginal);
-                        exifHtml += '<p><span class="label">拍摄时间:</span> <span class="value">' + formatDate(dateTaken) + '</span></p>';
+                        exifHtml += '<p><span class="label">拍摄时间:</span> ' + formatDate(dateTaken) + '</p>';
                     }
 
-                    // 经纬度
                     if (exifData.GPSLatitude && exifData.GPSLongitude) {
                         var latitude = parseExifCoordinate(exifData.GPSLatitude);
                         var longitude = parseExifCoordinate(exifData.GPSLongitude);
-                        exifHtml += '<p><span class="label">经纬度:</span> <span class="coordinates">' + formatCoordinates(latitude, longitude) + '</span></p>';
+                        exifHtml += '<p><span class="label">经纬度:</span> ' + formatCoordinates(latitude, longitude) + '</p>';
                     }
 
-                    // 其他Exif信息
-                    exifHtml += '<p><span class="label">光圈:</span> <span class="value">' + (exifData.FNumber || 'N/A') + '</span></p>';
-                    exifHtml += '<p><span class="label">焦距:</span> <span class="value">' + (exifData.FocalLength || 'N/A') + '</span></p>';
-                    exifHtml += '<p><span class="label">相机型号:</span> <span class="value">' + (exifData.Model || 'N/A') + '</span></p>';
+                    exifHtml += '<p><span class="label">光圈:</span> ' + (exifData.FNumber || 'N/A') + '</p>';
+                    exifHtml += '<p><span class="label">焦距:</span> ' + (exifData.FocalLength || 'N/A') + '</p>';
+                    exifHtml += '<p><span class="label">相机型号:</span> ' + (exifData.Model || 'N/A') + '</p>';
 
                     exifInfo.innerHTML = exifHtml;
                 } else {
@@ -210,8 +181,8 @@
             var imageContainers = Array.from(document.querySelectorAll('.image-container'));
 
             imageContainers.sort(function(a, b) {
-                var dateTimeA = parseExifDateTime(a.getAttribute('data-date-time'));
-                var dateTimeB = parseExifDateTime(b.getAttribute('data-date-time'));
+                var dateTimeA = parseExifDateTime(a.querySelector('.exif-info .date-taken').textContent);
+                var dateTimeB = parseExifDateTime(b.querySelector('.exif-info .date-taken').textContent);
 
                 return dateTimeB - dateTimeA;
             });
@@ -231,7 +202,6 @@
                 var documentHeight = document.documentElement.scrollHeight;
 
                 if (documentHeight - scrollTop - windowHeight < scrollThreshold) {
-                    // 用户滚动到页面底部
                     startIndex += imagesPerLoad;
                     loadImages(startIndex, imagesPerLoad);
                 }
