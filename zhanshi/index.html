@@ -67,10 +67,6 @@
             margin-left: 10px;
         }
 
-        .exif-info p .icon {
-            margin-right: 5px;
-        }
-
         .exif-info p .coordinates {
             font-family: monospace;
         }
@@ -157,21 +153,21 @@
 
                     // 拍摄时间
                     if (exifData.DateTimeOriginal) {
-                        var dateTaken = new Date(exifData.DateTimeOriginal);
-                        exifHtml += '<p><span class="label">拍摄时间:</span> ' + formatDate(dateTaken) + '</p>';
+                        var dateTaken = parseExifDateTime(exifData.DateTimeOriginal);
+                        exifHtml += '<p><span class="label">拍摄时间:</span> <span class="value">' + formatDate(dateTaken) + '</span></p>';
                     }
 
                     // 经纬度
                     if (exifData.GPSLatitude && exifData.GPSLongitude) {
-                        var latitude = exifData.GPSLatitude[0] + exifData.GPSLatitude[1] / 60 + exifData.GPSLatitude[2] / 3600;
-                        var longitude = exifData.GPSLongitude[0] + exifData.GPSLongitude[1] / 60 + exifData.GPSLongitude[2] / 3600;
-                        exifHtml += '<p><span class="label">经纬度:</span> ' + formatCoordinates(latitude, longitude) + '</p>';
+                        var latitude = parseExifCoordinate(exifData.GPSLatitude);
+                        var longitude = parseExifCoordinate(exifData.GPSLongitude);
+                        exifHtml += '<p><span class="label">经纬度:</span> <span class="coordinates">' + formatCoordinates(latitude, longitude) + '</span></p>';
                     }
 
                     // 其他Exif信息
-                    exifHtml += '<p><span class="label">光圈:</span> ' + (exifData.FNumber || 'N/A') + '</p>';
-                    exifHtml += '<p><span class="label">焦距:</span> ' + (exifData.FocalLength || 'N/A') + '</p>';
-                    exifHtml += '<p><span class="label">相机型号:</span> ' + (exifData.Model || 'N/A') + '</p>';
+                    exifHtml += '<p><span class="label">光圈:</span> <span class="value">' + (exifData.FNumber || 'N/A') + '</span></p>';
+                    exifHtml += '<p><span class="label">焦距:</span> <span class="value">' + (exifData.FocalLength || 'N/A') + '</span></p>';
+                    exifHtml += '<p><span class="label">相机型号:</span> <span class="value">' + (exifData.Model || 'N/A') + '</span></p>';
 
                     exifInfo.innerHTML = exifHtml;
                 } else {
@@ -180,6 +176,25 @@
 
                 element.appendChild(exifInfo);
             });
+        }
+
+        function parseExifDateTime(dateTimeString) {
+            var dateTimeParts = dateTimeString.split(' ');
+            var dateParts = dateTimeParts[0].split(':');
+            var timeParts = dateTimeParts[1].split(':');
+
+            var year = parseInt(dateParts[0]);
+            var month = parseInt(dateParts[1]) - 1;
+            var day = parseInt(dateParts[2]);
+            var hour = parseInt(timeParts[0]);
+            var minute = parseInt(timeParts[1]);
+            var second = parseInt(timeParts[2]);
+
+            return new Date(year, month, day, hour, minute, second);
+        }
+
+        function parseExifCoordinate(coordinate) {
+            return coordinate[0] + coordinate[1] / 60 + coordinate[2] / 3600;
         }
 
         function formatDate(date) {
@@ -192,19 +207,16 @@
         }
 
         function sortImagesByExifDateTime() {
-            var gallery = document.querySelector('.gallery');
-            var imageContainers = Array.from(gallery.querySelectorAll('.image-container'));
+            var imageContainers = Array.from(document.querySelectorAll('.image-container'));
 
             imageContainers.sort(function(a, b) {
-                var exifInfoA = a.querySelector('.exif-info');
-                var exifInfoB = b.querySelector('.exif-info');
+                var dateTimeA = parseExifDateTime(a.getAttribute('data-date-time'));
+                var dateTimeB = parseExifDateTime(b.getAttribute('data-date-time'));
 
-                var dateTimeA = exifInfoA.querySelector('.date-time').dataset.datetime;
-                var dateTimeB = exifInfoB.querySelector('.date-time').dataset.datetime;
-
-                return new Date(dateTimeB) - new Date(dateTimeA);
+                return dateTimeB - dateTimeA;
             });
 
+            var gallery = document.querySelector('.gallery');
             imageContainers.forEach(function(container) {
                 gallery.appendChild(container);
             });
