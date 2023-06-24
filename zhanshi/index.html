@@ -197,7 +197,7 @@
         }
 
         function formatCoordinates(latitude, longitude) {
-            return latitude + ', ' + longitude;
+            return latitude.toFixed(6) + ', ' + longitude.toFixed(6);
         }
 
         function sortImagesByExifDateTime() {
