@@ -1,44 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>显示图片</title>
+    <title>照片分享</title>
     <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px 0;
+            color: #333;
+        }
+
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .gallery img {
+        .image-container {
+            text-align: center;
+            margin: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .image-container:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container img {
+            display: block;
             max-width: 100%;
             height: auto;
-            margin: 10px;
-        }
-
-        .image-details {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .image-details p {
-            margin: 5px 0;
         }
 
         .exif-info {
-            font-size: 12px;
+            padding: 10px;
+            font-size: 14px;
             color: #999;
+            text-align: left;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .exif-info.show {
+        .image-container:hover .exif-info {
             opacity: 1;
+            transform: translateY(0);
+        }
+
+        .exif-info p {
+            margin: 5px 0;
+        }
+
+        .exif-info p .label {
+            font-weight: bold;
+        }
+
+        .location-info {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>显示图片</h1>
+    <h1>照片分享</h1>
 
     <div class="gallery"></div>
 
@@ -70,25 +101,21 @@
                 var imageIndex = i;
 
                 var loadPromise = loadImage(imageIndex).then(function(img) {
+                    // 创建图片容器
+                    var imageContainer = document.createElement('div');
+                    imageContainer.className = 'image-container';
+
                     // 创建图片元素
                     var image = document.createElement('img');
                     image.src = img.src;
                     image.alt = 'Image ' + imageIndex;
-
-                    // 创建图片信息元素
-                    var imageDetails = document.createElement('div');
-                    imageDetails.className = 'image-details';
-
-                    // 创建包含图片的容器
-                    var container = document.createElement('div');
-                    container.appendChild(image);
-                    container.appendChild(imageDetails);
-
-                    // 将容器添加到画廊中
-                    gallery.appendChild(container);
+                    imageContainer.appendChild(image);
 
                     // 获取并显示图片的EXIF信息
-                    getExifInformation(img, imageDetails);
+                    getExifInformation(img, imageContainer);
+
+                    // 将容器添加到画廊中
+                    gallery.appendChild(imageContainer);
                 }).catch(function() {
                     console.log('Image not found: ' + imageIndex);
                 });
@@ -105,40 +132,40 @@
         function getExifInformation(image, element) {
             // 使用exif.js获取图片的Exif信息
             EXIF.getData(image, function() {
-                var dateTimeOriginal = EXIF.getTag(this, 'DateTimeOriginal');
-                var make = EXIF.getTag(this, 'Make');
-                var model = EXIF.getTag(this, 'Model');
-                var location = EXIF.getTag(this, 'GPSLatitude') + ', ' + EXIF.getTag(this, 'GPSLongitude');
-
-                // 创建包含EXIF信息的元素
                 var exifInfo = document.createElement('div');
                 exifInfo.className = 'exif-info';
 
-                if (dateTimeOriginal) {
-                    var dateTimeParagraph = document.createElement('p');
-                    dateTimeParagraph.textContent = '拍摄时间: ' + dateTimeOriginal;
-                    exifInfo.appendChild(dateTimeParagraph);
+                var aperture = EXIF.getTag(this, 'FNumber');
+                var shutterSpeed = EXIF.getTag(this, 'ExposureTime');
+                var focalLength = EXIF.getTag(this, 'FocalLength');
+                var make = EXIF.getTag(this, 'Make');
+                var model = EXIF.getTag(this, 'Model');
+
+                if (aperture) {
+                    var apertureParagraph = document.createElement('p');
+                    apertureParagraph.innerHTML = '<span class="label">光圈:</span> f/' + aperture.toFixed(2);
+                    exifInfo.appendChild(apertureParagraph);
+                }
+
+                if (shutterSpeed) {
+                    var shutterSpeedParagraph = document.createElement('p');
+                    shutterSpeedParagraph.innerHTML = '<span class="label">快门速度:</span> ' + shutterSpeed + 's';
+                    exifInfo.appendChild(shutterSpeedParagraph);
+                }
+
+                if (focalLength) {
+                    var focalLengthParagraph = document.createElement('p');
+                    focalLengthParagraph.innerHTML = '<span class="label">焦距:</span> ' + focalLength.toFixed(2) + 'mm';
+                    exifInfo.appendChild(focalLengthParagraph);
                 }
 
                 if (make && model) {
-                    var deviceParagraph = document.createElement('p');
-                    deviceParagraph.textContent = '拍摄设备: ' + make + ' ' + model;
-                    exifInfo.appendChild(deviceParagraph);
+                    var cameraInfoParagraph = document.createElement('p');
+                    cameraInfoParagraph.innerHTML = '<span class="label">相机:</span> ' + make + ' ' + model;
+                    exifInfo.appendChild(cameraInfoParagraph);
                 }
 
-                if (location) {
-                    var locationParagraph = document.createElement('p');
-                    locationParagraph.textContent = '拍摄地点: ' + location;
-                    exifInfo.appendChild(locationParagraph);
-                }
-
-                // 将元素添加到容器中
                 element.appendChild(exifInfo);
-
-                // 添加动画类名以触发动画效果
-                setTimeout(function() {
-                    exifInfo.classList.add('show');
-                }, 100);
             });
         }
 
