@@ -68,81 +68,54 @@
 
     <script src="exif.js"></script>
     <script>
-        var imageFolder = 'images/';
+        var startIndex = 0;
         var imagesPerLoad = 20;
         var scrollThreshold = 200;
-        var startIndex = 0;
 
-        function loadImage(imageIndex) {
-            return new Promise(function(resolve, reject) {
-                var img = new Image();
-                img.onload = function() {
-                    resolve(img);
-                };
-                img.onerror = function() {
-                    reject();
-                };
-                img.src = imageFolder + 'image' + imageIndex + '.jpg';
-            });
-        }
-
-        function loadImages(start, count) {
+        function loadImages(startIndex, count) {
             var gallery = document.querySelector('.gallery');
 
-            var loadPromises = [];
-            for (var i = start; i < start + count; i++) {
-                var imageIndex = padDigits(i, 2);
+            for (var i = startIndex; i < startIndex + count; i++) {
+                var imageContainer = document.createElement('div');
+                imageContainer.className = 'image-container';
 
-                var loadPromise = loadImage(imageIndex).then(function(img) {
-                    var imageContainer = document.createElement('div');
-                    imageContainer.className = 'image-container';
+                var image = document.createElement('img');
+                image.src = 'images/image' + i + '.jpg';
+                imageContainer.appendChild(image);
 
-                    var image = document.createElement('img');
-                    image.src = img.src;
-                    imageContainer.appendChild(image);
-
-                    getExifInformation(img, imageContainer);
-
-                    gallery.appendChild(imageContainer);
-                }).catch(function() {
-                    console.log('Failed to load image: image' + imageIndex + '.jpg');
-                });
-
-                loadPromises.push(loadPromise);
-            }
-
-            Promise.all(loadPromises).then(function() {
-                sortImagesByExifDateTime();
-            });
-        }
-
-        function getExifInformation(image, element) {
-            EXIF.getData(image, function() {
                 var exifInfo = document.createElement('div');
                 exifInfo.className = 'exif-info';
 
-                var exifData = EXIF.getAllTags(this);
+                var exifHtml = '';
+                var exifData = EXIF.getAllTags(image);
                 if (exifData) {
-                    var exifHtml = '';
-
                     if (exifData.DateTimeOriginal) {
                         var dateTaken = parseExifDateTime(exifData.DateTimeOriginal);
-                        exifHtml += '<p><span class="label">拍摄时间:</span> ' + formatDate(dateTaken) + '</p>';
+                        exifHtml += '<p class="exif-item"><span class="exif-label">拍摄时间:</span> ' + formatDate(dateTaken) + '</p>';
                     }
-
-                    exifHtml += '<p><span class="label">经度:</span> ' + (exifData.GPSLongitude || 'N/A') + '</p>';
-                    exifHtml += '<p><span class="label">纬度:</span> ' + (exifData.GPSLatitude || 'N/A') + '</p>';
-                    exifHtml += '<p><span class="label">光圈:</span> ' + (exifData.FNumber || 'N/A') + '</p>';
-                    exifHtml += '<p><span class="label">焦距:</span> ' + (exifData.FocalLength || 'N/A') + '</p>';
-                    exifHtml += '<p><span class="label">相机型号:</span> ' + (exifData.Model || 'N/A') + '</p>';
-
-                    exifInfo.innerHTML = exifHtml;
+                    if (exifData.GPSLongitude && exifData.GPSLatitude) {
+                        var longitude = formatCoordinates(exifData.GPSLongitude);
+                        var latitude = formatCoordinates(exifData.GPSLatitude);
+                        exifHtml += '<p class="exif-item"><span class="exif-label">经度:</span> ' + longitude + '</p>';
+                        exifHtml += '<p class="exif-item"><span class="exif-label">纬度:</span> ' + latitude + '</p>';
+                    }
+                    if (exifData.FNumber) {
+                        exifHtml += '<p class="exif-item"><span class="exif-label">光圈:</span> ' + exifData.FNumber + '</p>';
+                    }
+                    if (exifData.FocalLength) {
+                        exifHtml += '<p class="exif-item"><span class="exif-label">焦距:</span> ' + exifData.FocalLength + '</p>';
+                    }
+                    if (exifData.Model) {
+                        exifHtml += '<p class="exif-item"><span class="exif-label">相机型号:</span> ' + exifData.Model + '</p>';
+                    }
                 } else {
-                    exifInfo.innerHTML = '<p>No Exif data available</p>';
+                    exifHtml = '<p>No Exif data available</p>';
                 }
 
-                element.appendChild(exifInfo);
-            });
+                exifInfo.innerHTML = exifHtml;
+                imageContainer.appendChild(exifInfo);
+                gallery.appendChild(imageContainer);
+            }
         }
 
         function parseExifDateTime(dateTimeString) {
@@ -165,16 +138,23 @@
             return date.toLocaleDateString('en-US', options);
         }
 
-        function padDigits(number, digits) {
-            return Array(Math.max(digits - String(number).length + 1, 0)).join('0') + number;
+        function formatCoordinates(coordinateArray) {
+            var degrees = coordinateArray[0];
+            var minutes = coordinateArray[1];
+            var seconds = coordinateArray[2];
+
+            var direction = coordinateArray[3];
+            var coordinate = degrees + '° ' + minutes + "' " + seconds + '" ' + direction;
+
+            return coordinate;
         }
 
         function sortImagesByExifDateTime() {
             var imageContainers = Array.from(document.querySelectorAll('.image-container'));
 
             imageContainers.sort(function(a, b) {
-                var dateTimeA = parseExifDateTime(a.querySelector('.exif-info .date-taken').textContent);
-                var dateTimeB = parseExifDateTime(b.querySelector('.exif-info .date-taken').textContent);
+                var dateTimeA = parseExifDateTime(a.querySelector('.exif-info .exif-item:first-child span').textContent.replace('拍摄时间:', '').trim());
+                var dateTimeB = parseExifDateTime(b.querySelector('.exif-info .exif-item:first-child span').textContent.replace('拍摄时间:', '').trim());
 
                 return dateTimeB - dateTimeA;
             });
@@ -187,6 +167,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             loadImages(startIndex, imagesPerLoad);
+            sortImagesByExifDateTime();
 
             window.addEventListener('scroll', function() {
                 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -196,6 +177,7 @@
                 if (documentHeight - scrollTop - windowHeight < scrollThreshold) {
                     startIndex += imagesPerLoad;
                     loadImages(startIndex, imagesPerLoad);
+                    sortImagesByExifDateTime();
                 }
             });
         });
