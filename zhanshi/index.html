@@ -59,6 +59,14 @@
         .exif-info p .label {
             font-weight: bold;
         }
+
+        .exif-info p .value {
+            font-weight: normal;
+        }
+
+        .exif-info p .coordinates {
+            font-family: monospace;
+        }
     </style>
 </head>
 <body>
@@ -133,6 +141,8 @@
                 var focalLength = EXIF.getTag(this, 'FocalLength');
                 var make = EXIF.getTag(this, 'Make');
                 var model = EXIF.getTag(this, 'Model');
+                var latitude = EXIF.getTag(this, 'GPSLatitude');
+                var longitude = EXIF.getTag(this, 'GPSLongitude');
 
                 if (aperture) {
                     var apertureParagraph = document.createElement('p');
@@ -156,6 +166,12 @@
                     var cameraInfoParagraph = document.createElement('p');
                     cameraInfoParagraph.innerHTML = '<span class="label">相机:</span> ' + make + ' ' + model;
                     exifInfo.appendChild(cameraInfoParagraph);
+                }
+
+                if (latitude && longitude) {
+                    var coordinatesParagraph = document.createElement('p');
+                    coordinatesParagraph.innerHTML = '<span class="label">经纬度:</span> <span class="coordinates">' + latitude + ', ' + longitude + '</span>';
+                    exifInfo.appendChild(coordinatesParagraph);
                 }
 
                 element.appendChild(exifInfo);
