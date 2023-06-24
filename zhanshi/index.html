@@ -82,7 +82,7 @@
                 img.onerror = function() {
                     reject();
                 };
-                img.src = imageFolder + 'image' + imageIndex + '.jpg';
+                img.src = imageFolder + 'IMG_' + imageIndex + '.jpg';
             });
         }
 
@@ -91,7 +91,7 @@
 
             var loadPromises = [];
             for (var i = start; i < start + count; i++) {
-                var imageIndex = i;
+                var imageIndex = padDigits(i, 8);
 
                 var loadPromise = loadImage(imageIndex).then(function(img) {
                     var imageContainer = document.createElement('div');
@@ -105,7 +105,7 @@
 
                     gallery.appendChild(imageContainer);
                 }).catch(function() {
-                    console.log('Failed to load image: image' + imageIndex + '.jpg');
+                    console.log('Failed to load image: IMG_' + imageIndex + '.jpg');
                 });
 
                 loadPromises.push(loadPromise);
@@ -130,12 +130,8 @@
                         exifHtml += '<p><span class="label">拍摄时间:</span> ' + formatDate(dateTaken) + '</p>';
                     }
 
-                    if (exifData.GPSLatitude && exifData.GPSLongitude) {
-                        var latitude = parseExifCoordinate(exifData.GPSLatitude);
-                        var longitude = parseExifCoordinate(exifData.GPSLongitude);
-                        exifHtml += '<p><span class="label">经纬度:</span> ' + formatCoordinates(latitude, longitude) + '</p>';
-                    }
-
+                    exifHtml += '<p><span class="label">经度:</span> ' + (exifData.GPSLongitude || 'N/A') + '</p>';
+                    exifHtml += '<p><span class="label">纬度:</span> ' + (exifData.GPSLatitude || 'N/A') + '</p>';
                     exifHtml += '<p><span class="label">光圈:</span> ' + (exifData.FNumber || 'N/A') + '</p>';
                     exifHtml += '<p><span class="label">焦距:</span> ' + (exifData.FocalLength || 'N/A') + '</p>';
                     exifHtml += '<p><span class="label">相机型号:</span> ' + (exifData.Model || 'N/A') + '</p>';
@@ -164,17 +160,13 @@
             return new Date(year, month, day, hour, minute, second);
         }
 
-        function parseExifCoordinate(coordinate) {
-            return coordinate[0] + coordinate[1] / 60 + coordinate[2] / 3600;
-        }
-
         function formatDate(date) {
             var options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
             return date.toLocaleDateString('en-US', options);
         }
 
-        function formatCoordinates(latitude, longitude) {
-            return latitude.toFixed(6) + ', ' + longitude.toFixed(6);
+        function padDigits(number, digits) {
+            return Array(Math.max(digits - String(number).length + 1, 0)).join('0') + number;
         }
 
         function sortImagesByExifDateTime() {
