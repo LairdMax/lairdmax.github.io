@@ -1,43 +1,30 @@
-var uploadedImages = []; // 存储上传的照片
+var imageContainer = document.getElementById('image-gallery');
+var imageDirectory = 'images/'; // 图片文件夹路径
 
-function handleImageUpload(event) {
-  var files = event.target.files; // 获取上传的文件
+function loadImages() {
+  fetch(imageDirectory)
+    .then((response) => response.text())
+    .then((html) => {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var links = doc.querySelectorAll('a');
 
-  // 遍历上传的每个文件
-  for (var i = 0; i < files.length; i++) {
-    var file = files[i];
+      // 遍历文件夹中的所有图片
+      links.forEach((link) => {
+        var fileName = link.getAttribute('href');
 
-    // 创建一个FileReader实例
-    var reader = new FileReader();
+        // 筛选出图片文件
+        if (fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png')) {
+          var image = document.createElement('img');
+          image.src = imageDirectory + fileName;
 
-    // 读取文件完成时的回调函数
-    reader.onload = function (e) {
-      var imageData = e.target.result; // 获取图片数据
-
-      // 创建一个img元素来显示图片
-      var imageElement = document.createElement('img');
-      imageElement.src = imageData;
-
-      // 将新上传的照片添加到数组的开头
-      uploadedImages.unshift(imageElement);
-
-      // 在HTML中显示照片
-      displayImages();
-    };
-
-    // 读取文件
-    reader.readAsDataURL(file);
-  }
+          imageContainer.appendChild(image);
+        }
+      });
+    })
+    .catch((error) => {
+      console.log('Error:', error);
+    });
 }
 
-function displayImages() {
-  var imageContainer = document.getElementById('image-gallery');
-  imageContainer.innerHTML = ''; // 清空容器中的内容
-
-  // 遍历uploadedImages数组并显示照片
-  for (var i = 0; i < uploadedImages.length; i++) {
-    imageContainer.appendChild(uploadedImages[i]);
-  }
-}
-
-window.onload = displayImages
+window.onload = loadImages;
