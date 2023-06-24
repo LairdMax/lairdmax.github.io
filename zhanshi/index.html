@@ -82,7 +82,7 @@
                 img.onerror = function() {
                     reject();
                 };
-                img.src = imageFolder + 'IMG_' + imageIndex + '.jpg';
+                img.src = imageFolder + 'image' + imageIndex + '.jpg';
             });
         }
 
@@ -91,7 +91,7 @@
 
             var loadPromises = [];
             for (var i = start; i < start + count; i++) {
-                var imageIndex = padDigits(i, 8);
+                var imageIndex = padDigits(i, 2);
 
                 var loadPromise = loadImage(imageIndex).then(function(img) {
                     var imageContainer = document.createElement('div');
@@ -105,7 +105,7 @@
 
                     gallery.appendChild(imageContainer);
                 }).catch(function() {
-                    console.log('Failed to load image: IMG_' + imageIndex + '.jpg');
+                    console.log('Failed to load image: image' + imageIndex + '.jpg');
                 });
 
                 loadPromises.push(loadPromise);
