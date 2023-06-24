@@ -69,6 +69,8 @@
                 if (this.exifdata) {
                     var exifHtml = '';
                     exifHtml += '<p>拍摄时间: ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
+                    exifHtml += '<p>经度: ' + (this.exifdata.GPSLongitude || '未知') + '</p>';
+                    exifHtml += '<p>纬度: ' + (this.exifdata.GPSLatitude || '未知') + '</p>';
                     exifHtml += '<p>光圈值: ' + (this.exifdata.FNumber || '未知') + '</p>';
                     exifHtml += '<p>焦距: ' + (this.exifdata.FocalLength || '未知') + '</p>';
                     exifHtml += '<p>镜头型号: ' + (this.exifdata.LensModel || '未知') + '</p>';
@@ -108,6 +110,7 @@
             while (currentIndex !== 0) {
                 randomIndex = Math.floor(Math.random() * currentIndex);
                 currentIndex -= 1;
+
                 temporaryValue = array[currentIndex];
                 array[currentIndex] = array[randomIndex];
                 array[randomIndex] = temporaryValue;
