@@ -126,14 +126,15 @@
 
     // 将EXIF信息转换为HTML格式字符串
     function createExifInfo(exifData) {
-      var exifInfo = '';
-      exifInfo += '<div><strong>拍照时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
-      exifInfo += '<div><strong>经度：</strong>' + (exifData.GPSLongitude || '') + '</div>';
-      exifInfo += '<div><strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
-      exifInfo += '<div><strong>ISO：</strong>' + (exifData.ISOSpeedRatings || '') + '</div>';
-      exifInfo += '<div><strong>光圈大小：</strong>' + (exifData.FNumber || '') + '</div>';
-      exifInfo += '<div><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
-      exifInfo += '<div><strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
+      var exifInfo = '<div>';
+      exifInfo += '<strong>拍摄时间：</strong>' + (exifData.DateTimeOriginal || '') + ' | ';
+      exifInfo += '<strong>经度：</strong>' + (exifData.GPSLongitude || '') + ' | ';
+      exifInfo += '<strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
+      exifInfo += '<div>';
+      exifInfo += '<strong>ISO：</strong>' + (exifData.ISOSpeedRatings || '') + ' | ';
+      exifInfo += '<strong>光圈大小：</strong>' + (exifData.FNumber || '') + ' | ';
+      exifInfo += '<strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + ' | ';
+      exifInfo += '<strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
       return exifInfo;
     }
 
