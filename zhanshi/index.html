@@ -69,13 +69,14 @@
                 if (this.exifdata) {
                     var exifHtml = '';
                     exifHtml += '<p><strong>拍摄时间:</strong> ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
-                    exifHtml += '<p><strong>拍照设备:</strong> ' + (this.exifdata.Make || '未知') + ' ' + (this.exifdata.Model || '') + '</p>';
-                    exifHtml += '<p><strong>光圈大小:</strong> ' + (this.exifdata.FNumber || '未知') + '</p>';
-                    exifHtml += '<p><strong>曝光时间:</strong> ' + (this.exifdata.ExposureTime || '未知') + '</p>';
-
+                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLongitude ? formatCoordinate(this.exifdata.GPSLongitude) : '未知') + '</p>';
+                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLatitude ? formatCoordinate(this.exifdata.GPSLatitude) : '未知') + '</p>';
+                    exifHtml += '<p><strong>设备:</strong> ' + (this.exifdata.Make || '未知') + ' ' + (this.exifdata.Model || '未知') + '</p>';
+                    exifHtml += '<p><strong>光圈:</strong> ' + (this.exifdata.FNumber ? 'f/' + this.exifdata.FNumber.toFixed(2) : '未知') + '</p>';
+                    exifHtml += '<p><strong>曝光时间:</strong> ' + (this.exifdata.ExposureTime ? this.exifdata.ExposureTime.toFixed(2) + 's' : '未知') + '</p>';
                     exifInfo.innerHTML = exifHtml;
                 } else {
-                    exifInfo.textContent = '无可用的 EXIF 信息';
+                    exifInfo.innerHTML = '<p>无可用的 EXIF 信息</p>';
                 }
 
                 element.appendChild(exifInfo);
@@ -136,6 +137,15 @@
                 }
             });
         });
+
+        function formatCoordinate(coordinate) {
+            var degrees = Math.abs(coordinate[0]);
+            var minutes = coordinate[1];
+            var seconds = coordinate[2];
+            var direction = coordinate[3];
+
+            return degrees + '° ' + minutes + '\' ' + seconds + '" ' + direction;
+        }
     </script>
 </body>
 </html>
