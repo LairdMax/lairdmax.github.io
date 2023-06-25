@@ -32,32 +32,34 @@
       border: 1px solid #ccc;
       padding: 10px;
       background-color: #f9f9f9;
+      box-sizing: border-box;
     }
 
     /* exif信息排版样式 */
     .exif-info-row {
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
+      justify-content: space-between;
       margin-bottom: 5px;
     }
 
     .exif-info-item {
-      flex: 0 0 100%;
+      flex: 0 0 calc(50% - 10px);
       box-sizing: border-box;
       padding: 5px;
       text-align: left;
     }
 
     /* 响应式布局 */
-    @media screen and (min-width: 768px) {
+    @media screen and (max-width: 767px) {
       .exif-info-row {
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .exif-info-item {
-        flex: 0 0 auto;
-        width: 50%;
+        flex: 0 0 100%;
+        margin-bottom: 5px;
       }
     }
   </style>
