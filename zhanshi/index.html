@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>照片展示</title>
   <style>
-    /* 居中显示图片和exif信息 */
+    /* 图片容器样式 */
     .photo-container {
       display: flex;
       flex-direction: column;
@@ -30,6 +30,7 @@
 <body>
   <div id="gallery"></div>
 
+  <script src="exif.js"></script>
   <script>
     // 图片列表
     var images = [
@@ -79,11 +80,16 @@
         // 创建图片元素
         var img = document.createElement('img');
         img.src = 'images/' + image;
+        img.onload = function() {
+          // 在图片加载完成后获取EXIF信息并显示
+          var exifData = EXIF.getAllTags(this);
+          var exifInfo = createExifInfo(exifData);
+          this.parentElement.nextElementSibling.innerHTML = exifInfo;
+        };
 
         // 创建exif信息元素
         var exifInfo = document.createElement('div');
         exifInfo.classList.add('exif-info');
-        exifInfo.innerText = '拍照时间：... 经度：... 纬度：... ISO：... 光圈大小：... 曝光时间：... 设备信息：...';
 
         // 将图片和exif信息添加到容器中
         photoContainer.appendChild(img);
@@ -98,6 +104,18 @@
 
       // 更新当前显示的图片索引
       currentIndex += batchSize;
+    }
+
+    // 将EXIF信息转换为HTML格式字符串
+    function createExifInfo(exifData) {
+      var exifInfo = '拍照时间：' + exifData.DateTimeOriginal + '<br>';
+      exifInfo += '经度：' + exifData.GPSLongitude + '<br>';
+      exifInfo += '纬度：' + exifData.GPSLatitude + '<br>';
+      exifInfo += 'ISO：' + exifData.ISO + '<br>';
+      exifInfo += '光圈大小：' + exifData.FNumber + '<br>';
+      exifInfo += '曝光时间：' + exifData.ExposureTime + '<br>';
+      exifInfo += '设备信息：' + exifData.Make + ' ' + exifData.Model + '<br>';
+      return exifInfo;
     }
 
     // 监听滚动事件，当滑动到底部时加载更多图片
