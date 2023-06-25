@@ -69,8 +69,12 @@
                 if (this.exifdata) {
                     var exifHtml = '';
                     exifHtml += '<p><strong>拍摄时间:</strong> ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
-                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLatitude ? formatCoordinate(this.exifdata.GPSLatitude) : '未知') + '</p>';
-                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLongitude ? formatCoordinate(this.exifdata.GPSLongitude) : '未知') + '</p>';
+                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLongitude ? formatCoordinate(this.exifdata.GPSLongitude) : '未知') + '</p>';
+                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLatitude ? formatCoordinate(this.exifdata.GPSLatitude) : '未知') + '</p>';
+                    exifHtml += '<p><strong>ISO:</strong> ' + (this.exifdata.ISO ? this.exifdata.ISO : '未知') + '</p>';
+                    exifHtml += '<p><strong>曝光时间:</strong> ' + (this.exifdata.ExposureTime ? this.exifdata.ExposureTime : '未知') + '</p>';
+                    exifHtml += '<p><strong>光圈大小:</strong> ' + (this.exifdata.FNumber ? 'f/' + this.exifdata.FNumber : '未知') + '</p>';
+                    exifHtml += '<p><strong>拍摄设备:</strong> ' + (this.exifdata.Make || '未知') + ' ' + (this.exifdata.Model || '') + '</p>';
                     exifInfo.innerHTML = exifHtml;
                 } else {
                     exifInfo.innerHTML = '<p>无可用的 EXIF 信息</p>';
@@ -81,30 +85,28 @@
         }
 
         function loadImages(startIndex, endIndex) {
-            var gallery = document.querySelector('.gallery');
-
             for (var i = startIndex; i < endIndex; i++) {
                 var imageSrc = imagesFolder + 'image' + i + '.jpg';
+
                 var imageContainer = document.createElement('div');
                 imageContainer.classList.add('image-container');
 
                 var image = new Image();
                 image.src = imageSrc;
-
                 image.onload = function() {
                     var container = this.parentNode;
+                    container.appendChild(this);
                     loadImageExif(this, container);
                 };
 
                 imageContainer.appendChild(image);
-                gallery.appendChild(imageContainer);
+
                 loadedImages.push(imageContainer);
             }
         }
 
         function shuffleArray(array) {
-            var currentIndex = array.length;
-            var temporaryValue, randomIndex;
+            var currentIndex = array.length, temporaryValue, randomIndex;
 
             while (currentIndex !== 0) {
                 randomIndex = Math.floor(Math.random() * currentIndex);
