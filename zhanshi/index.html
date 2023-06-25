@@ -137,8 +137,8 @@
     function createExifInfo(exifData) {
       var exifInfo = '<div class="exif-info-row">';
       exifInfo += '<div class="exif-info-item"><strong>拍摄时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
-      exifInfo += '<div class="exif-info-item"><strong>经度：</strong>' + formatCoordinate(exifData.GPSLongitude) + '</div>';
-      exifInfo += '<div class="exif-info-item"><strong>纬度：</strong>' + formatCoordinate(exifData.GPSLatitude) + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>经度坐标：</strong>' + formatCoordinate(exifData.GPSLongitude) + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>纬度坐标：</strong>' + formatCoordinate(exifData.GPSLatitude) + '</div>';
       exifInfo += '</div>';
       exifInfo += '<div class="exif-info-row">';
       exifInfo += '<div class="exif-info-item"><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
