@@ -1,119 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>照片展示</title>
-    <meta charset="utf-8">
-    <style>
-        /* 图片容器的 CSS 样式 */
-        .image-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* 图片的 CSS 样式 */
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* exif 信息的 CSS 样式 */
-        .exif-info {
-            font-size: 14px;
-            margin-top: 10px;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>照片展示</title>
+  <style>
+    /* 居中显示图片和exif信息 */
+    .photo-container {
+      text-align: center;
+    }
+    
+    /* exif信息样式 */
+    .exif-info {
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-    <div class="gallery"></div>
+  <div id="gallery"></div>
 
-    <script src="exif.js"></script>
-    <script>
-        var imagesFolder = 'images/'; // 存放照片的文件夹路径
-        var imagesPerLoad = 20; // 每次滚动加载的照片数量
-        var scrollThreshold = 200; // 滚动到页面底部触发加载更多照片的阈值
+  <script>
+    // 图片列表
+    var images = [
+      'image0.jpg',
+      'image1.jpg',
+      'image2.jpg',
+      'image3.jpg',
+      'image4.jpg',
+      'image5.jpg',
+      'image6.jpg',
+      'image7.jpg',
+      'image8.jpg',
+      'image9.jpg'
+    ];
 
-        var loadedImages = []; // 已加载的照片数组
-        var loadedCount = 0; // 记录已加载的照片数量
+    // 随机排序图片列表
+    images.sort(function() {
+      return 0.5 - Math.random();
+    });
 
-        function loadImages() {
-            // 加载初始的一组照片
-            for (var i = 0; i < imagesPerLoad; i++) {
-                var imageContainer = document.createElement('div');
-                imageContainer.classList.add('image-container');
+    // 当前显示的图片索引
+    var currentIndex = 0;
 
-                var image = new Image();
-                image.src = imagesFolder + 'image' + i + '.jpg';
+    // 每次滑动到底部时显示的图片数量
+    var batchSize = 4;
 
-                image.onload = function() {
-                    var container = this.parentNode;
-                    container.appendChild(this);
-                    loadImageExif(this, container);
-                };
+    // 初始化页面，显示初始图片
+    function initGallery() {
+      // 获取图片展示区域
+      var gallery = document.getElementById('gallery');
 
-                imageContainer.appendChild(image);
-                loadedImages.push(imageContainer);
-            }
+      // 清空图片展示区域
+      gallery.innerHTML = '';
 
-            loadedCount += imagesPerLoad;
+      // 显示当前批次的图片
+      for (var i = currentIndex; i < currentIndex + batchSize; i++) {
+        if (i >= images.length) {
+          break;
         }
 
-        function shuffleArray(array) {
-            // 使用 Fisher-Yates 算法打乱数组顺序的函数
-            var currentIndex = array.length;
-            var temporaryValue, randomIndex;
+        var image = images[i];
 
-            while (currentIndex !== 0) {
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
+        // 创建图片容器
+        var photoContainer = document.createElement('div');
+        photoContainer.classList.add('photo-container');
 
-                temporaryValue = array[currentIndex];
-                array[currentIndex] = array[randomIndex];
-                array[randomIndex] = temporaryValue;
-            }
+        // 创建图片元素
+        var img = document.createElement('img');
+        img.src = 'images/' + image;
 
-            return array;
-        }
+        // 创建exif信息元素
+        var exifInfo = document.createElement('div');
+        exifInfo.classList.add('exif-info');
+        exifInfo.innerText = '拍照时间：... 经度：... 纬度：... ISO：... 光圈大小：... 曝光时间：... 设备信息：...';
 
-        function handleScroll() {
-            // 处理滚动事件，当滚动到页面底部时加载更多的照片
-            if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - scrollThreshold) {
-                var remainingImages = loadedImages.slice(loadedCount);
-                loadedImages = loadedImages.slice(0, loadedCount);
+        // 将图片和exif信息添加到容器中
+        photoContainer.appendChild(img);
+        photoContainer.appendChild(exifInfo);
 
-                shuffleArray(remainingImages);
+        // 将容器添加到展示区域
+        gallery.appendChild(photoContainer);
+      }
 
-                remainingImages.forEach(function(imageContainer) {
-                    var gallery = document.querySelector('.gallery');
-                    gallery.appendChild(imageContainer);
-                });
+      // 更新当前显示的图片索引
+      currentIndex += batchSize;
+    }
 
-                loadedCount += remainingImages.length;
-            }
-        }
+    // 监听滚动事件，当滑动到底部时加载更多图片
+    window.addEventListener('scroll', function() {
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        initGallery();
+      }
+    });
 
-        document.addEventListener('DOMContentLoaded', function() {
-            loadImages();
-            window.addEventListener('scroll', handleScroll);
-        });
-
-        function loadImageExif(image, container) {
-            // 加载并显示照片的 exif 信息
-            EXIF.getData(image, function() {
-                var exifInfo = document.createElement('div');
-                exifInfo.classList.add('exif-info');
-
-                var exifData = EXIF.pretty(this);
-
-                if (exifData) {
-                    exifInfo.textContent = exifData;
-                } else {
-                    exifInfo.textContent = '无可用的 EXIF 信息';
-                }
-
-                container.appendChild(exifInfo);
-            });
-        }
-    </script>
+    // 初始化页面
+    initGallery();
+  </script>
 </body>
 </html>
+
