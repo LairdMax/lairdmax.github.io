@@ -10,6 +10,8 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease;
     }
     
     /* 图片样式 */
@@ -21,41 +23,20 @@
     /* exif信息样式 */
     .exif-info {
       margin-top: 10px;
+      font-family: Arial, sans-serif;
       font-size: 14px;
       text-align: center;
-      color: #999;
+      color: #333;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-
-    /* 添加过渡效果 */
-.photo-container,
-.exif-info {
-  transition: opacity 0.3s ease;
-}
-
-/* 添加阴影效果 */
-.photo-container {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* 字体和颜色调整 */
-.exif-info {
-  font-family: Arial, sans-serif;
-  color: #333;
-}
-
-/* 响应式布局 */
-@media screen and (max-width: 768px) {
-  .photo-container {
-    max-width: 100%;
-  }
-}
-
-
-
-
-
-    
+    /* 响应式布局 */
+    @media screen and (max-width: 768px) {
+      .photo-container {
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -117,6 +98,7 @@
             var exifData = EXIF.getAllTags(this);
             var exifInfo = createExifInfo(exifData);
             this.parentElement.nextElementSibling.innerHTML = exifInfo;
+            this.parentElement.nextElementSibling.style.opacity = 1;
           });
         };
 
@@ -141,13 +123,14 @@
 
     // 将EXIF信息转换为HTML格式字符串
     function createExifInfo(exifData) {
-      var exifInfo = '拍照时间：' + exifData.DateTimeOriginal + '<br>';
-      exifInfo += '经度：' + exifData.GPSLongitude + '<br>';
-      exifInfo += '纬度：' + exifData.GPSLatitude + '<br>';
-      exifInfo += 'ISO：' + exifData.ISO + '<br>';
-      exifInfo += '光圈大小：' + exifData.FNumber + '<br>';
-      exifInfo += '曝光时间：' + exifData.ExposureTime + '<br>';
-      exifInfo += '设备信息：' + exifData.Make + ' ' + exifData.Model + '<br>';
+      var exifInfo = '';
+      exifInfo += '<strong>拍照时间：</strong>' + exifData.DateTimeOriginal + '<br>';
+      exifInfo += '<strong>经度：</strong>' + exifData.GPSLongitude + '<br>';
+      exifInfo += '<strong>纬度：</strong>' + exifData.GPSLatitude + '<br>';
+      exifInfo += '<strong>ISO：</strong>' + exifData.ISO + '<br>';
+      exifInfo += '<strong>光圈大小：</strong>' + exifData.FNumber + '<br>';
+      exifInfo += '<strong>曝光时间：</strong>' + exifData.ExposureTime + '<br>';
+      exifInfo += '<strong>设备信息：</strong>' + exifData.Make + ' ' + exifData.Model + '<br>';
       return exifInfo;
     }
 
