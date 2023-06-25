@@ -13,13 +13,13 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       transition: opacity 0.3s ease;
     }
-    
+
     /* 图片样式 */
     .photo-container img {
       max-width: 100%;
       height: auto;
     }
-    
+
     /* exif信息样式 */
     .exif-info {
       margin-top: 10px;
@@ -31,17 +31,24 @@
       transition: opacity 0.3s ease;
       border: 1px solid #ccc;
       padding: 10px;
+      background-color: #f9f9f9;
     }
 
     /* exif信息排版样式 */
     .exif-info-row {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+
+    .exif-info-item {
+      flex: 0 0 50%;
       margin-bottom: 5px;
     }
 
     /* exif信息标题样式 */
-    .exif-info-title {
+    .exif-info strong {
       font-weight: bold;
     }
 
@@ -140,34 +147,16 @@
 
     // 将EXIF信息转换为HTML格式字符串
     function createExifInfo(exifData) {
-      var exifInfo = '';
-      exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">拍摄时间：</div>';
-      exifInfo += '<div>' + (exifData.DateTimeOriginal || '') + '</div>';
+      var exifInfo = '<div class="exif-info-row">';
+      exifInfo += '<div class="exif-info-item"><strong>拍照时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>经度：</strong>' + (exifData.GPSLongitude || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
       exifInfo += '</div>';
       exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">经度：</div>';
-      exifInfo += '<div>' + (exifData.GPSLongitude || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">纬度：</div>';
-      exifInfo += '<div>' + (exifData.GPSLatitude || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">ISO：</div>';
-      exifInfo += '<div>' + (exifData.ISOSpeedRatings || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">光圈大小：</div>';
-      exifInfo += '<div>' + (exifData.FNumber || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">曝光时间：</div>';
-      exifInfo += '<div>' + (exifData.ExposureTime || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
-      exifInfo += '<div class="exif-info-title">设备信息：</div>';
-      exifInfo += '<div>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>ISO：</strong>' + (exifData.ISOSpeedRatings || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>光圈大小：</strong>' + (exifData.FNumber || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
       exifInfo += '</div>';
       return exifInfo;
     }
