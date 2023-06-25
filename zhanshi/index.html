@@ -82,9 +82,11 @@
         img.src = 'images/' + image;
         img.onload = function() {
           // 在图片加载完成后获取EXIF信息并显示
-          var exifData = EXIF.getAllTags(this);
-          var exifInfo = createExifInfo(exifData);
-          this.parentElement.nextElementSibling.innerHTML = exifInfo;
+          EXIF.getData(this, function() {
+            var exifData = EXIF.getAllTags(this);
+            var exifInfo = createExifInfo(exifData);
+            this.parentElement.nextElementSibling.innerHTML = exifInfo;
+          });
         };
 
         // 创建exif信息元素
