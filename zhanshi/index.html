@@ -25,6 +25,37 @@
       text-align: center;
       color: #999;
     }
+
+
+    /* 添加过渡效果 */
+.photo-container,
+.exif-info {
+  transition: opacity 0.3s ease;
+}
+
+/* 添加阴影效果 */
+.photo-container {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 字体和颜色调整 */
+.exif-info {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* 响应式布局 */
+@media screen and (max-width: 768px) {
+  .photo-container {
+    max-width: 100%;
+  }
+}
+
+
+
+
+
+    
   </style>
 </head>
 <body>
