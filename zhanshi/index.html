@@ -48,10 +48,6 @@
       padding: 5px;
     }
 
-    .exif-info-row:nth-child(1) {
-      flex-wrap: nowrap;
-    }
-
     /* exif信息标题样式 */
     .exif-info strong {
       font-weight: bold;
@@ -156,8 +152,6 @@
       exifInfo += '<div class="exif-info-item"><strong>拍摄时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>经度：</strong>' + (exifData.GPSLongitude || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
       exifInfo += '<div class="exif-info-item"><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>光圈大小：</strong>' + (exifData.FNumber || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
