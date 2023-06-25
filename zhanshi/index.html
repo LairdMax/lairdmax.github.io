@@ -1,52 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
-    <title>照片分享</title>
+    <title>照片展示</title>
+    <meta charset="utf-8">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
+        /* 图片容器的 CSS 样式 */
         .image-container {
             text-align: center;
+            margin-bottom: 20px;
         }
 
+        /* 图片的 CSS 样式 */
         .image-container img {
             max-width: 100%;
             height: auto;
-            border-radius: 5px;
         }
 
+        /* exif 信息的 CSS 样式 */
         .exif-info {
+            font-size: 14px;
             margin-top: 10px;
-            padding: 5px;
-            background-color: #fff;
-            border-radius: 5px;
-            font-size: 12px;
-            line-height: 1.4;
             text-align: center;
-        }
-
-        .exif-info p {
-            margin: 0;
-            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -55,36 +29,15 @@
 
     <script src="exif.js"></script>
     <script>
-        var imagesFolder = 'images/';
-        var imagesPerLoad = 6;
-        var scrollThreshold = 200;
-        var loadedImages = [];
-        var loadedCount = 0;
+        var imagesFolder = 'images/'; // 存放照片的文件夹路径
+        var imagesPerLoad = 20; // 每次滚动加载的照片数量
+        var scrollThreshold = 200; // 滚动到页面底部触发加载更多照片的阈值
 
-        function loadImageExif(image, element) {
-            EXIF.getData(image, function() {
-                var exifInfo = document.createElement('div');
-                exifInfo.classList.add('exif-info');
-
-                if (this.exifdata) {
-                    var exifHtml = '';
-                    exifHtml += '<p><strong>拍摄时间:</strong> ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
-                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLongitude ? formatCoordinate(this.exifdata.GPSLongitude) : '未知') + '</p>';
-                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLatitude ? formatCoordinate(this.exifdata.GPSLatitude) : '未知') + '</p>';
-                    exifHtml += '<p><strong>ISO:</strong> ' + (this.exifdata.ISO ? this.exifdata.ISO : '未知') + '</p>';
-                    exifHtml += '<p><strong>光圈大小:</strong> ' + (this.exifdata.FNumber ? 'f/' + this.exifdata.FNumber : '未知') + '</p>';
-                    exifHtml += '<p><strong>曝光时间:</strong> ' + (this.exifdata.ExposureTime ? this.exifdata.ExposureTime : '未知') + '</p>';
-                    exifHtml += '<p><strong>设备信息:</strong> ' + (this.exifdata.Make || '未知') + ' ' + (this.exifdata.Model || '') + '</p>';
-                    exifInfo.innerHTML = exifHtml;
-                } else {
-                    exifInfo.innerHTML = '<p>无可用的 EXIF 信息</p>';
-                }
-
-                element.appendChild(exifInfo);
-            });
-        }
+        var loadedImages = []; // 已加载的照片数组
+        var loadedCount = 0; // 记录已加载的照片数量
 
         function loadImages() {
+            // 加载初始的一组照片
             for (var i = 0; i < imagesPerLoad; i++) {
                 var imageContainer = document.createElement('div');
                 imageContainer.classList.add('image-container');
@@ -106,6 +59,7 @@
         }
 
         function shuffleArray(array) {
+            // 使用 Fisher-Yates 算法打乱数组顺序的函数
             var currentIndex = array.length;
             var temporaryValue, randomIndex;
 
@@ -122,6 +76,7 @@
         }
 
         function handleScroll() {
+            // 处理滚动事件，当滚动到页面底部时加载更多的照片
             if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - scrollThreshold) {
                 var remainingImages = loadedImages.slice(loadedCount);
                 loadedImages = loadedImages.slice(0, loadedCount);
@@ -142,13 +97,22 @@
             window.addEventListener('scroll', handleScroll);
         });
 
-        function formatCoordinate(coordinate) {
-            var degrees = Math.abs(coordinate[0]);
-            var minutes = coordinate[1];
-            var seconds = coordinate[2];
-            var direction = coordinate[3];
+        function loadImageExif(image, container) {
+            // 加载并显示照片的 exif 信息
+            EXIF.getData(image, function() {
+                var exifInfo = document.createElement('div');
+                exifInfo.classList.add('exif-info');
 
-            return degrees + '° ' + minutes + '\' ' + seconds + '" ' + direction;
+                var exifData = EXIF.pretty(this);
+
+                if (exifData) {
+                    exifInfo.textContent = exifData;
+                } else {
+                    exifInfo.textContent = '无可用的 EXIF 信息';
+                }
+
+                container.appendChild(exifInfo);
+            });
         }
     </script>
 </body>
