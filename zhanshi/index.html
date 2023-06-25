@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,19 +92,22 @@
         // 创建图片元素
         var img = document.createElement('img');
         img.src = 'images/' + image;
-        img.onload = function() {
-          // 在图片加载完成后获取EXIF信息并显示
-          EXIF.getData(this, function() {
-            var exifData = EXIF.getAllTags(this);
-            var exifInfo = createExifInfo(exifData);
-            this.parentElement.nextElementSibling.innerHTML = exifInfo;
-            this.parentElement.nextElementSibling.style.opacity = 1;
-          });
-        };
 
         // 创建exif信息元素
         var exifInfo = document.createElement('div');
         exifInfo.classList.add('exif-info');
+
+        // 在图片加载完成后获取EXIF信息并显示
+        img.onload = function(exif) {
+          return function() {
+            EXIF.getData(this, function() {
+              var exifData = EXIF.getAllTags(this);
+              var exifHtml = createExifInfo(exifData);
+              exif.innerHTML = exifHtml;
+              exif.style.opacity = 1;
+            });
+          };
+        }(exifInfo);
 
         // 将图片和exif信息添加到容器中
         photoContainer.appendChild(img);
@@ -125,13 +127,13 @@
     // 将EXIF信息转换为HTML格式字符串
     function createExifInfo(exifData) {
       var exifInfo = '';
-      exifInfo += '<strong>拍照时间：</strong>' + exifData.DateTimeOriginal + '<br>';
-      exifInfo += '<strong>经度：</strong>' + exifData.GPSLongitude + '<br>';
-      exifInfo += '<strong>纬度：</strong>' + exifData.GPSLatitude + '<br>';
-      exifInfo += '<strong>ISO：</strong>' + exifData.ISO + '<br>';
-      exifInfo += '<strong>光圈大小：</strong>' + exifData.FNumber + '<br>';
-      exifInfo += '<strong>曝光时间：</strong>' + exifData.ExposureTime + '<br>';
-      exifInfo += '<strong>设备信息：</strong>' + exifData.Make + ' ' + exifData.Model + '<br>';
+      exifInfo += '<strong>拍照时间：</strong>' + (exifData.DateTimeOriginal || '') + '<br>';
+      exifInfo += '<strong>经度：</strong>' + (exifData.GPSLongitude || '') + '<br>';
+      exifInfo += '<strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '<br>';
+      exifInfo += '<strong>ISO：</strong>' + (exifData.ISO || '') + '<br>';
+      exifInfo += '<strong>光圈大小：</strong>' + (exifData.FNumber || '') + '<br>';
+      exifInfo += '<strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '<br>';
+      exifInfo += '<strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '<br>';
       return exifInfo;
     }
 
