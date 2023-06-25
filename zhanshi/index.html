@@ -45,6 +45,8 @@
     .exif-info-item {
       flex: 0 0 50%;
       margin-bottom: 5px;
+      box-sizing: border-box;
+      padding: 5px;
     }
 
     /* exif信息标题样式 */
@@ -151,8 +153,6 @@
       exifInfo += '<div class="exif-info-item"><strong>拍照时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>经度：</strong>' + (exifData.GPSLongitude || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
-      exifInfo += '</div>';
-      exifInfo += '<div class="exif-info-row">';
       exifInfo += '<div class="exif-info-item"><strong>ISO：</strong>' + (exifData.ISOSpeedRatings || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>光圈大小：</strong>' + (exifData.FNumber || '') + '</div>';
       exifInfo += '<div class="exif-info-item"><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
@@ -173,4 +173,3 @@
   </script>
 </body>
 </html>
-
