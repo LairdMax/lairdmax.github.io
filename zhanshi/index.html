@@ -31,6 +31,16 @@
       transition: opacity 0.3s ease;
     }
 
+    /* exif信息排版样式 */
+    .exif-info div {
+      margin-bottom: 5px;
+    }
+
+    /* exif信息标题样式 */
+    .exif-info strong {
+      font-weight: bold;
+    }
+
     /* 响应式布局 */
     @media screen and (max-width: 768px) {
       .photo-container {
@@ -127,14 +137,16 @@
     // 将EXIF信息转换为HTML格式字符串
     function createExifInfo(exifData) {
       var exifInfo = '<div>';
-      exifInfo += '<strong>拍摄时间：</strong>' + (exifData.DateTimeOriginal || '') + ' | ';
-      exifInfo += '<strong>经度：</strong>' + (exifData.GPSLongitude || '') + ' | ';
-      exifInfo += '<strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
+      exifInfo += '<div><strong>拍照时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
+      exifInfo += '<div><strong>经度：</strong>' + (exifData.GPSLongitude || '') + '</div>';
+      exifInfo += '<div><strong>纬度：</strong>' + (exifData.GPSLatitude || '') + '</div>';
+      exifInfo += '</div>';
       exifInfo += '<div>';
-      exifInfo += '<strong>ISO：</strong>' + (exifData.ISOSpeedRatings || '') + ' | ';
-      exifInfo += '<strong>光圈大小：</strong>' + (exifData.FNumber || '') + ' | ';
-      exifInfo += '<strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + ' | ';
-      exifInfo += '<strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
+      exifInfo += '<div><strong>ISO：</strong>' + (exifData.ISOSpeedRatings || '') + '</div>';
+      exifInfo += '<div><strong>光圈大小：</strong>' + (exifData.FNumber || '') + '</div>';
+      exifInfo += '<div><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
+      exifInfo += '<div><strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
+      exifInfo += '</div>';
       return exifInfo;
     }
 
