@@ -36,7 +36,7 @@
             border-radius: 5px;
         }
 
-        .exif-info {
+        .image-container .exif-info {
             margin-top: 10px;
             padding: 5px;
             background-color: #fff;
@@ -45,7 +45,7 @@
             line-height: 1.4;
         }
 
-        .exif-info p {
+        .image-container .exif-info p {
             margin: 0;
             margin-bottom: 5px;
         }
@@ -69,8 +69,9 @@
                 if (this.exifdata) {
                     var exifHtml = '';
                     exifHtml += '<p><strong>拍摄时间:</strong> ' + (this.exifdata.DateTimeOriginal || '未知') + '</p>';
-                    exifHtml += '<p><strong>经度:</strong> ' + (this.exifdata.GPSLongitude ? formatCoordinate(this.exifdata.GPSLongitude) : '未知') + '</p>';
-                    exifHtml += '<p><strong>纬度:</strong> ' + (this.exifdata.GPSLatitude ? formatCoordinate(this.exifdata.GPSLatitude) : '未知') + '</p>';
+                    exifHtml += '<p><strong>拍照设备:</strong> ' + (this.exifdata.Make || '未知') + ' ' + (this.exifdata.Model || '') + '</p>';
+                    exifHtml += '<p><strong>光圈大小:</strong> ' + (this.exifdata.FNumber || '未知') + '</p>';
+                    exifHtml += '<p><strong>曝光时间:</strong> ' + (this.exifdata.ExposureTime || '未知') + '</p>';
 
                     exifInfo.innerHTML = exifHtml;
                 } else {
@@ -79,21 +80,6 @@
 
                 element.appendChild(exifInfo);
             });
-        }
-
-        function formatCoordinate(coordinate) {
-            if (coordinate && coordinate.length === 3) {
-                var degrees = coordinate[0] || 0;
-                var minutes = coordinate[1] || 0;
-                var seconds = coordinate[2] || 0;
-
-                var direction = coordinate[3] || '';
-                var formattedCoordinate = degrees + '° ' + minutes + '\' ' + seconds + '" ' + direction;
-
-                return formattedCoordinate;
-            }
-
-            return '';
         }
 
         function loadImages(startIndex, endIndex) {
@@ -153,4 +139,3 @@
     </script>
 </body>
 </html>
-
