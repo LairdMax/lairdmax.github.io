@@ -43,20 +43,21 @@
     }
 
     .exif-info-item {
-      flex: 0 0 50%;
+      flex: 0 0 100%;
       box-sizing: border-box;
       padding: 5px;
-    }
-
-    /* exif信息标题样式 */
-    .exif-info strong {
-      font-weight: bold;
+      text-align: left;
     }
 
     /* 响应式布局 */
-    @media screen and (max-width: 768px) {
-      .photo-container {
-        max-width: 100%;
+    @media screen and (min-width: 768px) {
+      .exif-info-row {
+        flex-wrap: nowrap;
+      }
+
+      .exif-info-item {
+        flex: 0 0 auto;
+        width: 50%;
       }
     }
   </style>
