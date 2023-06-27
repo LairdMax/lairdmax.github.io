@@ -1,0 +1,26 @@
+/* Photo Gallery Styles */
+.photo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photo-card {
+  width: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+}
+
+.exif-info {
+  margin-top: 10px;
+}
+
+/* Custom Styles */
+/* TODO: Add your custom styles here */
