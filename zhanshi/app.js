@@ -29,14 +29,15 @@ new Vue({
       }
     },
     fetchExif(photo) {
-      // 使用exif.js获取照片的EXIF信息，并将其存储到photo.exif对象中
-      // 在这里添加获取EXIF信息的代码
-      // 示例：
-      photo.exif = {
-        shootTime: '2021-09-15 12:30',
-        device: 'Canon EOS 5D Mark IV',
-        parameters: 'Aperture: f/2.8, Shutter Speed: 1/1000s, ISO: 200'
-      };
+      const imageUrl = photo.url;
+      EXIF.getData(imageUrl, function() {
+        const exifData = EXIF.getAllTags(this);
+        photo.exif = {
+          shootTime: exifData.DateTimeOriginal,
+          device: exifData.Model,
+          parameters: `Aperture: f/${exifData.FNumber}, Shutter Speed: ${exifData.ExposureTime}s, ISO: ${exifData.ISO}`
+        };
+      });
     }
   }
 });
