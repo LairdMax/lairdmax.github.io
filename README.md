@@ -1,5 +1,6 @@
 # lairdmax.github.io
-
-
-博客框架官网 https://gohugo.io/
-主题开发文档 https://hugoloveit.com/zh-cn/
+                             
+白嫖github网页功能，不对外开放，君子勿入！谢谢！  
+Use the github web page function, not open to the public, gentlemen do not enter! Thank you! 
+                                                                
+                                                                                          LairdMax
