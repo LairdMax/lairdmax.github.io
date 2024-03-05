@@ -10,7 +10,7 @@ $(document).ready(function() {
     $.each(data, function(index, item) {
       if (item.type === 'file' && item.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
         var photoUrl = item.download_url;
-        var photoElement = $('<div class="photo"></div>');
+        var photoElement = $('<div class="photo" align="center"></div>');
         var imgElement = $('<img>').attr('src', photoUrl).attr("width","60%");
         photoElement.append(imgElement);
         $('#photo-gallery').append(photoElement);
