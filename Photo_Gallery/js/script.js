@@ -11,7 +11,7 @@ $(document).ready(function() {
       if (item.type === 'file' && item.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
         var photoUrl = item.download_url;
         var photoElement = $('<div class="photo"></div>');
-        var imgElement = $('<img>').attr('src', photoUrl);
+        var imgElement = $('<img>').attr('src', photoUrl,"width","60%");
         photoElement.append(imgElement);
         $('#photo-gallery').append(photoElement);
 
