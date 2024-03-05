@@ -199,4 +199,3 @@ function convertDmsToDecimal(dmsArray) {
   return decimalValue.toFixed(2);
 }
 
-
