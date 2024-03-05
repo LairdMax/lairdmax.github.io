@@ -1,6 +1,6 @@
 $(document).ready(function() {
   
-  var username = 'wanqianshijie';
+  var username = 'wanqian6311';
   var repository = 'Photos';
   var path = 'images';
 
