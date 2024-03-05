@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>照片展示</title>
+  <style>
+    /* 图片容器样式 */
+    .photo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: opacity 0.3s ease;
+    }
+
+    /* 图片样式 */
+    .photo-container img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* exif信息样式 */
+    .exif-info {
+      width: 90%;
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      text-align: center;
+      color: #333;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* exif信息排版样式 */
+    .exif-info-row{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 5px;
+    }
+
+    .exif-info-item {
+      flex: 0 0 33.33%;
+      box-sizing: border-box;
+      padding: 5px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="gallery"></div>
+
+  <script src="exif.js"></script>
+  <script>
+    // 图片列表
+    var images = [
+      'image0.jpg',
+      'image1.jpg',
+      'image2.jpg',
+      'image3.jpg'
+      
+    ];
+
+    // 随机排序图片列表
+    images.sort(function() {
+      return 0.5 - Math.random();
+    });
+
+    // 当前显示的图片索引
+    var currentIndex = 0;
+
+    // 每次滑动到底部时显示的图片数量
+    var batchSize = 4;
+
+    // 初始化页面，显示初始图片
+    function initGallery() {
+      // 获取图片展示区域
+      var gallery = document.getElementById('gallery');
+
+      // 创建文档片段，用于一次性添加多个元素
+      var fragment = document.createDocumentFragment();
+
+      // 显示当前批次的图片
+      for (var i = currentIndex; i < currentIndex + batchSize; i++) {
+        if (i >= images.length) {
+          break;
+        }
+
+        var image = images[i];
+
+        // 创建图片容器
+        var photoContainer = document.createElement('div');
+        photoContainer.classList.add('photo-container');
+
+        // 创建图片元素
+        var img = document.createElement('img');
+        img.src = './images/' + image;
+
+        // 创建exif信息元素
+        var exifInfo = document.createElement('div');
+        exifInfo.classList.add('exif-info');
+
+        // 在图片加载完成后获取EXIF信息并显示
+        img.onload = function(exif) {
+          return function() {
+            EXIF.getData(this, function() {
+              var exifData = EXIF.getAllTags(this);
+              var exifHtml = createExifInfo(exifData);
+              exif.innerHTML = exifHtml;
+              exif.style.opacity = 1;
+            });
+          };
+        }(exifInfo);
+
+        // 将图片和exif信息添加到容器中
+        photoContainer.appendChild(img);
+        photoContainer.appendChild(exifInfo);
+
+        // 将容器添加到文档片段
+        fragment.appendChild(photoContainer);
+      }
+
+      // 将文档片段一次性添加到展示区域
+      gallery.appendChild(fragment);
+
+      // 更新当前显示的图片索引
+      currentIndex += batchSize;
+    }
+
+    // 将EXIF信息转换为HTML格式字符串
+    function createExifInfo(exifData) {
+      var exifInfo = '<div class="exif-info-row">';
+      exifInfo += '<div class="exif-info-item"><strong>拍摄时间：</strong>' + (exifData.DateTimeOriginal || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>经度坐标：</strong>' + formatCoordinate(exifData.GPSLongitude) + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>纬度坐标：</strong>' + formatCoordinate(exifData.GPSLatitude) + '</div>';
+      exifInfo += '</div>';
+      exifInfo += '<div class="exif-info-row">';
+      exifInfo += '<div class="exif-info-item"><strong>曝光时间：</strong>' + (exifData.ExposureTime || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>光圈大小：</strong>' + (exifData.FNumber || '') + '</div>';
+      exifInfo += '<div class="exif-info-item"><strong>设备信息：</strong>' + (exifData.Make || '') + ' ' + (exifData.Model || '') + '</div>';
+      exifInfo += '</div>';
+      return exifInfo;
+    }
+
+    // 格式化经度和纬度的显示
+    function formatCoordinate(coordinate) {
+      if (Array.isArray(coordinate) && coordinate.length === 3) {
+        var degrees = coordinate[0];
+        var minutes = coordinate[1];
+        var seconds = coordinate[2];
+
+        return degrees + "° " + minutes + "' " + seconds + '"';
+      }
+
+      return '';
+    }
+
+    // 监听滚动事件，当滑动到底部时加载更多图片
+    window.addEventListener('scroll', function() {
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight) {
+        initGallery();
+      }
+    });
+
+    // 初始化页面
+    initGallery();
+  </script>
+</body>
+</html>
